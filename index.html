@@ -3,18 +3,16 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+
 <meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="default" />
 <meta name="apple-mobile-web-app-title" content="Craftora DIY" />
 <meta name="theme-color" content="#3D5A45" />
 
-<!-- Craftora DIY Home Screen / Browser Icon -->
-<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Crect width='512' height='512' rx='112' fill='%23F2EEE4'/%3E%3Ccircle cx='256' cy='256' r='178' fill='%23E4EBE2'/%3E%3Cpath d='M256 143c-53 0-96 43-96 96 0 39 23 73 56 88l-27 62c-3 8 3 17 12 17h110c9 0 15-9 12-17l-27-62c33-15 56-49 56-88 0-53-43-96-96-96z' fill='%233D5A45'/%3E%3Cpath d='M256 175c-27-29-72-20-82 14-9 31 17 58 48 54 14-2 27-10 34-22 7 12 20 20 34 22 31 4 57-23 48-54-10-34-55-43-82-14z' fill='%23C77B76'/%3E%3Cpath d='M205 321h102M216 344h80' stroke='%23F2EEE4' stroke-width='12' stroke-linecap='round'/%3E%3Ctext x='256' y='420' text-anchor='middle' font-family='Arial' font-size='42' font-weight='700' fill='%233A2E27'%3ECD%3C/text%3E%3C/svg%3E">
+<title>Craftora DIY — Prompt Generator</title>
 
-<title>Craftora DIY - Prompt Generator</title>
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@500;600&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<!-- Craftora DIY home-screen / browser icon -->
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Crect width='512' height='512' rx='110' fill='%233D5A45'/%3E%3Cpath d='M142 190c0-31 25-56 56-56h116c31 0 56 25 56 56v132c0 31-25 56-56 56H198c-31 0-56-25-56-56V190z' fill='%23F2EEE4'/%3E%3Cpath d='M194 205l124 124M318 205L194 329' stroke='%23C77B76' stroke-width='25' stroke-linecap='round'/%3E%3Ccircle cx='256' cy='267' r='19' fill='%233D5A45'/%3E%3C/svg%3E" />
 
 <style>
   :root {
@@ -41,7 +39,8 @@
     margin: 0;
     background: var(--bg);
     color: var(--ink);
-    font-family: 'Work Sans', sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
+                 Roboto, Helvetica, Arial, sans-serif;
     padding: 24px 16px 60px;
     -webkit-tap-highlight-color: transparent;
   }
@@ -56,32 +55,31 @@
     margin-bottom: 24px;
   }
 
-  .brand-icon {
-    width: 64px;
-    height: 64px;
+  .brand-mark {
+    width: 58px;
+    height: 58px;
     margin: 0 auto 10px;
     border-radius: 18px;
-    background: var(--surface);
-    border: 1px solid var(--border);
+    background: var(--accent);
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 4px 14px rgba(58,46,39,0.08);
-    overflow: hidden;
+    box-shadow: 0 7px 20px rgba(61,90,69,.18);
   }
 
-  .brand-icon svg {
-    width: 56px;
-    height: 56px;
+  .brand-mark span {
+    color: var(--bg);
+    font-size: 27px;
+    font-weight: 700;
   }
 
   header h1 {
-    font-family: 'Fraunces', serif;
+    font-family: Georgia, "Times New Roman", serif;
     font-weight: 600;
     font-size: 27px;
     margin: 0 0 4px;
     color: var(--accent);
-    letter-spacing: 0.2px;
+    letter-spacing: .2px;
   }
 
   header p {
@@ -91,10 +89,10 @@
   }
 
   .creator {
-    margin-top: 7px;
-    font-size: 11px;
+    margin-top: 8px;
+    font-size: 10.5px;
     color: var(--ink-muted);
-    letter-spacing: 0.2px;
+    letter-spacing: .5px;
   }
 
   .card {
@@ -115,6 +113,7 @@
     margin: 0;
     font-size: 12.5px;
     color: var(--ink-soft);
+    line-height: 1.45;
   }
 
   label.field-label {
@@ -144,7 +143,7 @@
   }
 
   .chip:active {
-    transform: scale(0.97);
+    transform: scale(.97);
   }
 
   input[type=text] {
@@ -161,11 +160,6 @@
   input[type=text]:focus {
     outline: 2px solid var(--accent);
     outline-offset: 1px;
-  }
-
-  .hook-input {
-    border-color: var(--rose);
-    background: #FFF9F8;
   }
 
   .country-grid {
@@ -193,7 +187,7 @@
     font-size: 10.5px;
     color: var(--ink-muted);
     text-transform: uppercase;
-    letter-spacing: 0.3px;
+    letter-spacing: .3px;
   }
 
   .generate-btn {
@@ -208,10 +202,11 @@
     cursor: pointer;
     font-family: inherit;
     margin-top: 6px;
+    box-shadow: 0 5px 14px rgba(61,90,69,.16);
   }
 
   .generate-btn:active {
-    transform: scale(0.99);
+    transform: scale(.99);
   }
 
   .error {
@@ -253,7 +248,7 @@
     border-radius: var(--radius);
     border: 1px solid var(--border);
     background: var(--surface-2);
-    font-family: 'SF Mono', Menlo, monospace;
+    font-family: SFMono-Regular, Menlo, Monaco, Consolas, monospace;
     font-size: 11.5px;
     line-height: 1.5;
     color: var(--ink);
@@ -266,25 +261,6 @@
     color: var(--ink-muted);
     margin-top: 20px;
   }
-
-  .section-badge {
-    display: inline-block;
-    font-size: 10px;
-    padding: 4px 8px;
-    border-radius: 999px;
-    background: var(--accent-soft);
-    color: var(--accent);
-    margin-bottom: 8px;
-    font-weight: 600;
-    letter-spacing: 0.4px;
-    text-transform: uppercase;
-  }
-
-  @media (max-width: 380px) {
-    .country-grid {
-      grid-template-columns: 1fr;
-    }
-  }
 </style>
 </head>
 
@@ -293,59 +269,62 @@
 <div class="wrap">
 
   <header>
-
-    <div class="brand-icon">
-      <svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
-        <rect width="512" height="512" rx="112" fill="#F2EEE4"/>
-        <circle cx="256" cy="256" r="178" fill="#E4EBE2"/>
-        <path d="M256 143c-53 0-96 43-96 96 0 39 23 73 56 88l-27 62c-3 8 3 17 12 17h110c9 0 15-9 12-17l-27-62c33-15 56-49 56-88 0-53-43-96-96-96z" fill="#3D5A45"/>
-        <path d="M256 175c-27-29-72-20-82 14-9 31 17 58 48 54 14-2 27-10 34-22 7 12 20 20 34 22 31 4 57-23 48-54-10-34-55-43-82-14z" fill="#C77B76"/>
-        <path d="M205 321h102M216 344h80" stroke="#F2EEE4" stroke-width="12" stroke-linecap="round"/>
-        <text x="256" y="420" text-anchor="middle" font-family="Arial" font-size="42" font-weight="700" fill="#3A2E27">CD</text>
-      </svg>
+    <div class="brand-mark">
+      <span>✦</span>
     </div>
 
     <h1>Craftora DIY</h1>
-    <p>Viral Craft Prompt Studio</p>
-    <div class="creator">Created by Hiraj</div>
-
+    <p>Viral DIY Master Prompt Generator</p>
+    <div class="creator">Created for Hiraj</div>
   </header>
 
+
+  <!-- TRENDING TOPICS -->
   <div class="card">
 
-    <label class="field-label">Trending topics in this niche</label>
+    <label class="field-label">
+      Trending topics in this niche
+    </label>
 
     <div class="chips">
 
-      <button class="chip" onclick="pickTopic('Dollar Tree Room Decor Hack')">
+      <button class="chip"
+        onclick="pickTopic('Dollar Tree Room Decor Hack')">
         Dollar Tree hack
       </button>
 
-      <button class="chip" onclick="pickTopic('Thrift Flip Transformation')">
+      <button class="chip"
+        onclick="pickTopic('Thrift Flip Transformation')">
         Thrift flip
       </button>
 
-      <button class="chip" onclick="pickTopic('Miniature Dollhouse Furniture')">
+      <button class="chip"
+        onclick="pickTopic('Miniature Dollhouse Furniture')">
         Mini furniture
       </button>
 
-      <button class="chip" onclick="pickTopic('Resin Coaster Art')">
+      <button class="chip"
+        onclick="pickTopic('Resin Coaster Art')">
         Resin art
       </button>
 
-      <button class="chip" onclick="pickTopic('No-Sew Cozy Blanket')">
+      <button class="chip"
+        onclick="pickTopic('No-Sew Cozy Blanket')">
         No-sew blanket
       </button>
 
-      <button class="chip" onclick="pickTopic('Cardboard Storage Organizer')">
+      <button class="chip"
+        onclick="pickTopic('Cardboard Storage Organizer')">
         Cardboard organizer
       </button>
 
-      <button class="chip" onclick="pickTopic('Aesthetic Room Wall Art')">
+      <button class="chip"
+        onclick="pickTopic('Aesthetic Room Wall Art')">
         Wall art
       </button>
 
-      <button class="chip" onclick="pickTopic('Paper Flower Bouquet')">
+      <button class="chip"
+        onclick="pickTopic('Paper Flower Bouquet')">
         Paper flowers
       </button>
 
@@ -353,6 +332,8 @@
 
   </div>
 
+
+  <!-- TOPIC -->
   <div class="card">
 
     <label class="field-label" for="topic">
@@ -367,36 +348,22 @@
 
   </div>
 
-  <!-- NEW: EDITABLE VIRAL HOOK -->
 
-  <div class="card">
-
-    <span class="section-badge">Viral Hook</span>
-
-    <label class="field-label" for="hook">
-      Opening hook for the video
-    </label>
-
-    <input
-      id="hook"
-      class="hook-input"
-      type="text"
-      placeholder="e.g. DON'T BUY WALL ART… TRY THIS FIRST 😳"
-    />
-
-  </div>
-
+  <!-- FOLLOWER TARGET -->
   <div class="card note-row">
 
     <span>📈</span>
 
     <p>
-      Follower target set to maximum realistic organic growth automatically —
-      no need to fill this in.
+      Follower optimization is automatically enabled:
+      maximum realistic organic reach, retention, saves, shares and
+      follower conversion.
     </p>
 
   </div>
 
+
+  <!-- COUNTRIES -->
   <div class="card">
 
     <label class="field-label">
@@ -407,6 +374,24 @@
 
   </div>
 
+
+  <!-- HOOK -->
+  <div class="card">
+
+    <label class="field-label" for="hook">
+      Viral hook wording (editable)
+    </label>
+
+    <input
+      id="hook"
+      type="text"
+      placeholder='e.g. "Wait... this is just paper? 🤯"'
+    />
+
+  </div>
+
+
+  <!-- CLOSING -->
   <div class="card">
 
     <label class="field-label" for="ending">
@@ -416,17 +401,23 @@
     <input
       id="ending"
       type="text"
-      placeholder="e.g. Would you try this? YES or NO? 👇"
+      placeholder="e.g. Would you try this? YES or NO 👇"
     />
 
   </div>
 
-  <button class="generate-btn" onclick="generate()">
-    Generate full master prompt
+
+  <!-- GENERATE -->
+  <button
+    class="generate-btn"
+    onclick="generate()">
+    Generate Final Craftora DIY Prompt
   </button>
 
   <p id="error" class="error"></p>
 
+
+  <!-- OUTPUT -->
   <div
     id="output-wrap"
     class="card"
@@ -435,927 +426,1172 @@
 
     <div class="output-head">
 
-      <span>Generated prompt</span>
+      <span>Generated final master prompt</span>
 
-      <button id="copy-btn" class="copy-btn" onclick="copyPrompt()">
+      <button
+        id="copy-btn"
+        class="copy-btn"
+        onclick="copyPrompt()">
         Copy
       </button>
 
     </div>
 
-    <textarea id="output" readonly></textarea>
+    <textarea
+      id="output"
+      readonly>
+    </textarea>
 
   </div>
 
+
   <p class="footer-note">
-    Save this page to your home screen for quick access.
+    Craftora DIY • Master Prompt System • Hiraj
   </p>
 
 </div>
 
+
 <script>
+
+/* =========================================================
+   COUNTRY DATABASE
+   ========================================================= */
 
 const countryStyle = {
 
   US: {
-    rpm: 'highest',
-    aesthetic: 'bold, bright, high-contrast colors, energetic composition',
-    materials: 'items easily found at Walmart, Target, Michaels, Dollar Tree',
-    tone: 'casual, friendly American English',
-    hook: 'budget-friendly dollar store hack angle',
-    music: 'upbeat-but-slow lo-fi pop with a warm acoustic guitar loop, the kind of gentle trending sound used in US aesthetic transformation videos'
+    rpm: "highest",
+    aesthetic:
+      "bold but premium, bright attractive colors, strong contrast, clean modern composition",
+    materials:
+      "items commonly available at Walmart, Target, Michaels or Dollar Tree",
+    tone:
+      "casual, friendly natural American English",
+    hook:
+      "budget-friendly transformation, clever dollar-store or everyday-material angle",
+    music:
+      "a currently relevant slow-to-mid tempo royalty-free or officially licensed aesthetic lo-fi/pop style with warm acoustic texture, suitable for US DIY and transformation content"
   },
 
   Canada: {
-    rpm: 'high',
-    aesthetic: 'bright but relaxed, nature-influenced tones',
-    materials: 'items available at Dollarama or Michaels',
-    tone: 'warm, friendly Canadian English',
-    hook: 'cozy seasonal and outdoor-living angle',
-    music: 'soft indie-folk acoustic track with a relaxed slow tempo, cozy cabin-aesthetic feel'
+    rpm: "high",
+    aesthetic:
+      "bright but relaxed, warm natural tones, cozy and clean composition",
+    materials:
+      "items commonly available at Dollarama, Michaels or mainstream Canadian craft stores",
+    tone:
+      "warm, friendly natural Canadian English",
+    hook:
+      "cozy, practical and satisfying weekend-project angle",
+    music:
+      "a currently relevant gentle indie-folk/acoustic style with relaxed tempo and cozy natural atmosphere, royalty-free or officially licensed"
   },
 
   UK: {
-    rpm: 'high',
-    aesthetic: 'refined, muted palette, tidy composition',
-    materials: 'items available at Wilko, The Range, or B&M',
-    tone: 'polite British English',
-    hook: 'practical, understated charm angle',
-    music: 'gentle piano-led lo-fi track, slow and understated, matching a calm British aesthetic'
+    rpm: "high",
+    aesthetic:
+      "refined, tidy, muted natural palette with clean composition",
+    materials:
+      "items commonly available at mainstream UK craft and home stores",
+    tone:
+      "natural, friendly British English",
+    hook:
+      "practical, clever and understated transformation angle",
+    music:
+      "a currently relevant gentle piano-led lo-fi/acoustic style, slow and understated, royalty-free or officially licensed"
   },
 
   Australia: {
-    rpm: 'high',
-    aesthetic: 'light, airy, sun-bright palette',
-    materials: 'items available at Kmart or Spotlight',
-    tone: 'relaxed, upbeat Australian English',
-    hook: 'laid-back weekend-project angle',
-    music: 'laid-back slow acoustic strum with a beachy, relaxed island-pop feel'
+    rpm: "high",
+    aesthetic:
+      "light, airy, natural and sun-bright palette",
+    materials:
+      "items commonly available at Kmart, Spotlight or mainstream Australian craft stores",
+    tone:
+      "relaxed, natural Australian English",
+    hook:
+      "easy weekend-project and satisfying transformation angle",
+    music:
+      "a currently relevant relaxed acoustic/indie style with natural warm atmosphere, royalty-free or officially licensed"
   },
 
   Germany: {
-    rpm: 'high',
-    aesthetic: 'precise, clean, muted natural tones',
-    materials: 'items available at Action or local craft stores',
-    tone: 'clear, straightforward English',
-    hook: 'practical, well-made quality angle',
-    music: 'minimal ambient piano track, slow and precise, understated electronic pads'
+    rpm: "high",
+    aesthetic:
+      "precise, clean, minimal natural tones and highly organized composition",
+    materials:
+      "items commonly available at Action or mainstream German craft/home stores",
+    tone:
+      "clear, concise and polished English",
+    hook:
+      "practical, precise and well-made craftsmanship angle",
+    music:
+      "a currently relevant minimal piano/ambient instrumental with slow controlled rhythm, royalty-free or officially licensed"
   },
 
   Norway: {
-    rpm: 'high',
-    aesthetic: 'minimal, muted Nordic tones, lots of white space',
-    materials: 'items available at local Nordic home-goods stores',
-    tone: 'calm, simple English',
-    hook: 'minimalist hygge-style angle',
-    music: 'soft ambient Nordic-folk instrumental, very slow and airy'
+    rpm: "high",
+    aesthetic:
+      "minimal Nordic tones, white space, natural textures and calm composition",
+    materials:
+      "items commonly available at mainstream Nordic home and craft stores",
+    tone:
+      "calm, simple and clear English",
+    hook:
+      "minimalist, cozy and useful DIY angle",
+    music:
+      "a currently relevant soft Nordic ambient/acoustic instrumental, airy and slow, royalty-free or officially licensed"
   },
 
   Switzerland: {
-    rpm: 'high',
-    aesthetic: 'precise, refined, neutral tones',
-    materials: 'items available at local craft or home stores',
-    tone: 'clear, polished English',
-    hook: 'quality-craftsmanship angle',
-    music: 'refined slow piano instrumental with subtle strings'
+    rpm: "high",
+    aesthetic:
+      "precise, refined, elegant neutral tones and exceptionally clean composition",
+    materials:
+      "items commonly available at Swiss craft, stationery or home stores",
+    tone:
+      "clear, polished and natural English",
+    hook:
+      "quality craftsmanship, precision and elegant-result angle",
+    music:
+      "a currently relevant refined slow piano instrumental with subtle strings, royalty-free or officially licensed"
   },
 
   Sweden: {
-    rpm: 'high',
-    aesthetic: 'clean Scandinavian minimalism, soft pastels',
-    materials: 'items available at IKEA-style stores',
-    tone: 'calm, simple English',
-    hook: 'cozy minimalist hygge angle',
-    music: 'soft Scandinavian lo-fi with gentle synth pads, slow and dreamy'
+    rpm: "high",
+    aesthetic:
+      "clean Scandinavian minimalism with soft natural pastels",
+    materials:
+      "items commonly available at mainstream Scandinavian home and craft stores",
+    tone:
+      "calm, simple and friendly English",
+    hook:
+      "cozy minimalist home-decor transformation angle",
+    music:
+      "a currently relevant soft Scandinavian lo-fi instrumental with gentle atmospheric texture, royalty-free or officially licensed"
   },
 
   Denmark: {
-    rpm: 'high',
-    aesthetic: 'cozy minimalism, warm neutral tones',
-    materials: 'items available at local Nordic home stores',
-    tone: 'calm, warm English',
-    hook: 'hygge home-comfort angle',
-    music: 'warm acoustic hygge-style instrumental, slow and comforting'
+    rpm: "high",
+    aesthetic:
+      "cozy minimalism, warm neutral tones and premium simplicity",
+    materials:
+      "items commonly available at mainstream Danish/Nordic home and craft stores",
+    tone:
+      "calm, warm and natural English",
+    hook:
+      "hygge-inspired practical home-comfort angle",
+    music:
+      "a currently relevant warm acoustic hygge-style instrumental, slow and comforting, royalty-free or officially licensed"
   },
 
   Netherlands: {
-    rpm: 'high',
-    aesthetic: 'clean, practical, bright natural light',
-    materials: 'items available at Action or HEMA',
-    tone: 'friendly, direct English',
-    hook: 'practical budget-decor angle',
-    music: 'light, slow indie-pop instrumental with a friendly, upbeat-but-relaxed feel'
+    rpm: "high",
+    aesthetic:
+      "clean, practical, bright natural light and organized composition",
+    materials:
+      "items commonly available at Action, HEMA or mainstream Dutch stores",
+    tone:
+      "friendly, direct and natural English",
+    hook:
+      "smart practical budget-decor transformation angle",
+    music:
+      "a currently relevant light slow indie-pop/acoustic instrumental with relaxed energy, royalty-free or officially licensed"
   },
 
   Ireland: {
-    rpm: 'medium-high',
-    aesthetic: 'warm, cozy, approachable tones',
-    materials: 'items available at Dealz or Woodies',
-    tone: 'friendly Irish English',
-    hook: 'cozy home-project angle',
-    music: 'warm slow acoustic guitar with a gentle folk feel'
+    rpm: "medium-high",
+    aesthetic:
+      "warm, cozy and approachable natural tones",
+    materials:
+      "items commonly available at mainstream Irish craft and home stores",
+    tone:
+      "friendly natural English",
+    hook:
+      "cozy practical home-project angle",
+    music:
+      "a currently relevant warm acoustic folk-inspired instrumental with slow relaxed rhythm, royalty-free or officially licensed"
   },
 
   NewZealand: {
-    rpm: 'medium-high',
-    aesthetic: 'light, natural, outdoor-influenced tones',
-    materials: 'items available at Kmart or The Warehouse',
-    tone: 'relaxed, upbeat English',
-    hook: 'laid-back weekend-project angle',
-    music: 'relaxed slow acoustic track with a natural, outdoorsy tone'
+    rpm: "medium-high",
+    aesthetic:
+      "light, natural, fresh and outdoors-influenced tones",
+    materials:
+      "items commonly available at Kmart, The Warehouse or mainstream NZ stores",
+    tone:
+      "relaxed and friendly English",
+    hook:
+      "easy laid-back weekend-project angle",
+    music:
+      "a currently relevant relaxed acoustic instrumental with natural outdoorsy atmosphere, royalty-free or officially licensed"
   },
 
   Poland: {
-    rpm: 'medium',
-    aesthetic: 'clean, cozy, minimalist, soft natural tones',
-    materials: 'items available at Pepco, Action, or IKEA-style home stores',
-    tone: 'simple clear English, warm and approachable',
-    hook: 'cozy home-decor and seasonal hygge-style angle',
-    music: 'gentle slow piano-and-strings instrumental, cozy and warm'
+    rpm: "medium",
+    aesthetic:
+      "clean, cozy, soft natural tones and approachable composition",
+    materials:
+      "items commonly available at Pepco, Action or mainstream Polish home/craft stores",
+    tone:
+      "simple, clear and warm English",
+    hook:
+      "cozy home-decor and satisfying budget transformation angle",
+    music:
+      "a currently relevant gentle piano-and-strings instrumental, warm and calm, royalty-free or officially licensed"
   }
 
 };
 
+
+/* =========================================================
+   COUNTRY LABELS
+   ========================================================= */
+
 const countryLabels = {
-  US: 'United States',
-  Canada: 'Canada',
-  UK: 'United Kingdom',
-  Australia: 'Australia',
-  Germany: 'Germany',
-  Norway: 'Norway',
-  Switzerland: 'Switzerland',
-  Sweden: 'Sweden',
-  Denmark: 'Denmark',
-  Netherlands: 'Netherlands',
-  Ireland: 'Ireland',
-  NewZealand: 'New Zealand',
-  Poland: 'Poland'
+
+  US: "United States",
+  Canada: "Canada",
+  UK: "United Kingdom",
+  Australia: "Australia",
+  Germany: "Germany",
+  Norway: "Norway",
+  Switzerland: "Switzerland",
+  Sweden: "Sweden",
+  Denmark: "Denmark",
+  Netherlands: "Netherlands",
+  Ireland: "Ireland",
+  NewZealand: "New Zealand",
+  Poland: "Poland"
+
 };
+
 
 const MAX_COUNTRIES = 4;
 
-const listEl = document.getElementById('country-list');
+
+/* =========================================================
+   BUILD COUNTRY UI
+   ========================================================= */
+
+const listEl =
+  document.getElementById("country-list");
 
 Object.keys(countryStyle).forEach((code, i) => {
 
-  const label = document.createElement('label');
+  const label = document.createElement("label");
 
-  label.className = 'country-item';
+  label.className = "country-item";
 
   label.innerHTML =
     '<span>' +
     '<input type="checkbox" value="' +
     code +
     '" class="country-cb"' +
-    (i === 0 ? ' checked' : '') +
-    ' />' +
+    (i === 0 ? " checked" : "") +
+    " />" +
     countryLabels[code] +
-    '</span>' +
+    "</span>" +
     '<span class="rpm-tag">' +
     countryStyle[code].rpm +
-    '</span>';
+    "</span>";
 
   listEl.appendChild(label);
 
 });
 
+
+/* =========================================================
+   COUNTRY LIMIT
+   ========================================================= */
+
 function refreshCbLimits() {
 
   const checked =
-    document.querySelectorAll('.country-cb:checked');
+    document.querySelectorAll(
+      ".country-cb:checked"
+    );
 
-  document.querySelectorAll('.country-cb').forEach(box => {
+  document
+    .querySelectorAll(".country-cb")
+    .forEach(box => {
 
-    box.disabled =
-      checked.length >= MAX_COUNTRIES &&
-      !box.checked;
+      box.disabled =
+        checked.length >= MAX_COUNTRIES &&
+        !box.checked;
 
-  });
+    });
 
 }
 
-document.querySelectorAll('.country-cb').forEach(cb => {
 
-  cb.addEventListener('change', () => {
+document
+  .querySelectorAll(".country-cb")
+  .forEach(cb => {
 
-    refreshCbLimits();
+    cb.addEventListener("change", () => {
 
-    document.getElementById('error').style.display = 'none';
+      refreshCbLimits();
+
+      document.getElementById(
+        "error"
+      ).style.display = "none";
+
+    });
 
   });
 
-});
 
 refreshCbLimits();
 
-function pickTopic(t) {
 
-  document.getElementById('topic').value = t;
+/* =========================================================
+   TOPIC PICKER
+   ========================================================= */
 
-  document.getElementById('error').style.display = 'none';
+function pickTopic(topic) {
+
+  document.getElementById("topic").value =
+    topic;
+
+  document.getElementById("error")
+    .style.display = "none";
 
 }
+
+
+/* =========================================================
+   COUNTRY PROMPT BLOCK
+   ========================================================= */
 
 function buildCountryBlock(countries) {
 
   return countries.map(code => {
 
-    const c = countryStyle[code];
+    const c =
+      countryStyle[code];
 
-    return countryLabels[code] +
-      ' (RPM: ' +
+    return (
+
+      countryLabels[code] +
+      " (RPM: " +
       c.rpm +
-      '):\n' +
+      "):\n" +
 
-      '- Aesthetic: ' +
+      "- Aesthetic: " +
       c.aesthetic +
-      '\n' +
+      "\n" +
 
-      '- Materials shown: ' +
+      "- Materials shown: " +
       c.materials +
-      '\n' +
+      "\n" +
 
-      '- Text tone: ' +
+      "- Text tone: " +
       c.tone +
-      '\n' +
+      "\n" +
 
-      '- Viral hook angle: ' +
-      c.hook;
+      "- Viral hook angle: " +
+      c.hook
 
-  }).join('\n\n');
+    );
+
+  }).join("\n\n");
 
 }
+
+
+/* =========================================================
+   MUSIC BLOCK
+   ========================================================= */
 
 function buildMusicBlock(countries) {
 
   return countries.map(code => {
 
-    return countryLabels[code] +
-      ': ' +
-      countryStyle[code].music;
+    return (
+      countryLabels[code] +
+      ": " +
+      countryStyle[code].music
+    );
 
-  }).join('\n');
+  }).join("\n");
 
 }
+
+
+/* =========================================================
+   GENERATE FINAL MASTER PROMPT
+   ========================================================= */
 
 function generate() {
 
   const topic =
-    document.getElementById('topic').value.trim();
+    document.getElementById("topic")
+      .value.trim();
 
   const hook =
-    document.getElementById('hook').value.trim();
+    document.getElementById("hook")
+      .value.trim();
 
   const ending =
-    document.getElementById('ending').value.trim();
+    document.getElementById("ending")
+      .value.trim();
 
   const checked =
     Array.from(
-      document.querySelectorAll('.country-cb:checked')
+      document.querySelectorAll(
+        ".country-cb:checked"
+      )
     ).map(cb => cb.value);
 
   const errorEl =
-    document.getElementById('error');
+    document.getElementById("error");
+
 
   if (!topic) {
 
     errorEl.textContent =
-      'Enter or pick a craft action first.';
+      "Enter or pick a craft action first.";
 
-    errorEl.style.display = 'block';
-
-    return;
-
-  }
-
-  if (!hook) {
-
-    errorEl.textContent =
-      'Enter your viral hook first.';
-
-    errorEl.style.display = 'block';
+    errorEl.style.display =
+      "block";
 
     return;
 
   }
+
 
   if (checked.length === 0) {
 
     errorEl.textContent =
-      'Select at least one target country.';
+      "Select at least one target country.";
 
-    errorEl.style.display = 'block';
+    errorEl.style.display =
+      "block";
 
     return;
 
   }
 
-  errorEl.style.display = 'none';
+
+  errorEl.style.display =
+    "none";
+
 
   const countryLabel =
     checked
       .map(c => countryLabels[c])
-      .join(', ');
+      .join(", ");
+
 
   const countryBlock =
     buildCountryBlock(checked);
 
+
   const musicBlock =
     buildMusicBlock(checked);
 
+
   const followerLine =
-    'maximum realistic organic follower growth (push for the highest achievable growth rate, not a capped number)';
+    "maximum realistic organic follower growth, while optimizing watch time, retention, saves, shares, comments and follower conversion";
+
+
+  const finalHook =
+    hook ||
+    "Wait... this is just paper? 🤯";
+
+
+  const finalEnding =
+    ending ||
+    "Would you try this? YES or NO 👇";
+
 
   const text = [
 
-    'MASTER PROMPT - CRAFTORA DIY VIRAL CRAFT VIDEO / INFOGRAPHIC',
+    "MASTER PROMPT — CRAFTORA DIY VIRAL CRAFT VIDEO",
+    "(FINAL BRAND-CONSISTENT, RETENTION-OPTIMIZED, STEP-ACCURATE EDITION)",
 
-    '(Brand-Consistent, Multi-Country, Music-Matched Edition)',
+    "",
 
-    '',
+    "Create a highly attractive, original, professional and viral-ready DIY craft tutorial for my Facebook page: Craftora DIY.",
 
-    'Create a highly attractive, original, viral-ready DIY craft tutorial for my Facebook page Craftora DIY.',
+    "",
 
-    '',
+    "=================================================",
+    "VARIABLES FOR THIS GENERATION",
+    "=================================================",
 
-    '-------------------------------------------------',
-    'VARIABLES FOR THIS GENERATION',
-    '-------------------------------------------------',
+    "",
 
-    '',
+    "THING TO MAKE: " + topic,
+    "TARGET COUNTRIES: " + countryLabel,
+    "FOLLOWER OBJECTIVE: " + followerLine,
 
-    'THING TO MAKE: ' + topic,
+    "",
 
-    'TARGET COUNTRIES: ' + countryLabel,
+    "Blend all selected country characteristics into ONE cohesive Craftora DIY visual identity. Do NOT create separate country versions.",
 
-    'PAGE FOLLOWER TARGET: ' + followerLine,
+    "",
 
-    'EDITABLE VIRAL HOOK: ' + hook,
+    "=================================================",
+    "CRAFTORA DIY — PERMANENT BRAND IDENTITY",
+    "=================================================",
 
-    '',
+    "",
 
-    'Blend the visual and tonal cues of all listed countries into one cohesive design rather than making separate versions.',
+    "This is a permanent brand system. The following rules must remain consistent across EVERY Craftora DIY video, regardless of the craft or target country.",
 
-    '',
+    "",
 
-    '-------------------------------------------------',
-    'CRAFTORA DIY FIXED VIDEO BRAND IDENTITY',
-    '-------------------------------------------------',
+    "BRAND NAME:",
+    "\"Craftora DIY\"",
 
-    '',
+    "",
 
-    'Every video must begin with the exact same Craftora DIY text branding.',
+    "The exact brand name must always appear as \"Craftora DIY\".",
+    "Never change the spelling.",
+    "Never replace it with another name.",
+    "Never create a different logo identity for different videos.",
 
-    'OPENING BRAND TEXT: CRAFTORA DIY',
+    "",
 
-    'The opening brand identity is TEXT ONLY. Do NOT use a logo.',
+    "OPENING BRANDING:",
+    "During the opening hook, display a small, elegant and premium \"Craftora DIY\" text signature in a consistent fixed position.",
+    "The branding must look like the same brand signature in every video.",
+    "Use the same typography treatment, size, spacing, alignment and visual style every time.",
+    "Do NOT make the brand name huge or allow it to cover the creator, craft or hook.",
+    "Do NOT generate a random logo.",
 
-    'The exact wording "CRAFTORA DIY" must remain unchanged in every video.',
+    "",
 
-    'Use the same elegant rounded sans-serif typography, same font weight, same approximate size, same placement, same animation, same visual treatment, same spacing and same timing in every video.',
+    "ENDING BRANDING:",
+    "Display the same exact \"Craftora DIY\" premium text treatment again near the final result.",
+    "The opening and ending branding must visually belong to the same identity.",
 
-    'The Craftora DIY opening must become a recognizable visual signature across the entire page.',
+    "",
 
-    'Do not redesign, restyle, recolor or reposition the Craftora DIY opening based on the topic or target country.',
+    "PERMANENT VISUAL IDENTITY:",
+    "- Warm handmade color family.",
+    "- Soft premium pastels with one or two attractive accent colors.",
+    "- Clean light background.",
+    "- Consistent rounded sans-serif instructional typography.",
+    "- Consistent step-number treatment.",
+    "- Consistent CTA position.",
+    "- Consistent Craftora DIY brand signature.",
+    "- Premium Pinterest-style DIY editorial appearance.",
+    "- Friendly, simple and encouraging communication.",
+    "- No sudden visual style changes between videos.",
 
-    'Do not replace Craftora DIY with another name.',
+    "",
 
-    'Do not add the creator name Hiraj to the video.',
+    "The objective is that a viewer who has seen one Craftora DIY video should recognize another Craftora DIY video from the visual language alone, even before reading the page name.",
 
-    '',
+    "",
 
-    '-------------------------------------------------',
-    'CRAFTORA DIY BRAND STYLE CONSISTENCY',
-    '-------------------------------------------------',
+    "=================================================",
+    "OPENING HOOK — FIRST SECONDS ARE CRITICAL",
+    "=================================================",
 
-    '',
+    "",
 
-    'Every single video generated for this page, regardless of topic or target country, must feel instantly recognizable as a Craftora DIY video.',
+    "The first 0–1 second must be the strongest visual attention moment of the entire opening.",
 
-    '- Same warm, handmade color family across every video (soft pastels plus one or two bright accent colors), never a completely different palette from video to video.',
+    "",
 
-    '- Same pacing rhythm: quick satisfying cuts on each crafting action, no dead air, no overly long static shots.',
+    "OPENING SEQUENCE:",
 
-    '- Same on-screen text style: clean rounded sans-serif captions, consistent size and placement across every video.',
+    "1. Show an attractive YOUNG ADULT FEMALE DIY CREATOR naturally presenting or holding the COMPLETED FINISHED CRAFT.",
+    "2. The finished craft must be immediately visible and visually impressive.",
+    "3. Her expression and body language should feel natural, authentic and pleasantly curious/proud about the result.",
+    "4. Keep the creator visually appealing but do NOT sexualize her and do NOT make her appearance the main subject.",
+    "5. The CRAFT remains the primary visual focus.",
+    "6. Use a clean close or medium-close composition with the face and finished craft clearly readable.",
+    "7. Add the small consistent \"Craftora DIY\" brand signature in its permanent position.",
+    "8. Immediately create curiosity about HOW the simple material becomes the finished result.",
 
-    '- Same tone of voice in captions: friendly, encouraging, and simple, never overly formal or overly silly.',
+    "",
 
-    '- Same closing structure every time: finished craft shown clearly, then the Follow-Share-Save CTA in the same position and style.',
+    "OPENING HOOK TEXT:",
+    "\"" + finalHook + "\"",
 
-    '- Treat this as a recognizable series so that a viewer who has seen one Craftora DIY video can immediately tell a new one belongs to the same page, purely from the look and feel, even before seeing the logo or name.',
+    "",
 
-    '',
+    "The opening must make the viewer naturally think:",
+    "\"How did she make that?\"",
 
-    '-------------------------------------------------',
-    'EXACT VIDEO TIMING STRUCTURE',
-    '-------------------------------------------------',
+    "",
 
-    '',
+    "IMPORTANT:",
+    "Do NOT spend too long introducing the creator.",
+    "Do NOT create a talking-head introduction.",
+    "Do NOT add unnecessary dialogue.",
+    "The creator is a visual hook, not a replacement for the tutorial.",
+    "Move quickly from the finished-result hook into the actual making process.",
 
-    '0.0-0.8 seconds: Show the fixed "CRAFTORA DIY" text-only brand identity.',
+    "",
 
-    'The Craftora DIY branding must use the exact same visual treatment in every video.',
+    "=================================================",
+    "TIMING AND RETENTION STRUCTURE",
+    "=================================================",
 
-    '0.8-2.5 seconds: Immediately transition into the editable viral hook and the strongest curiosity-driving visual.',
+    "",
 
-    'VIRAL HOOK TO USE EXACTLY: "' + hook + '"',
+    "Use a compact vertical social-media format with no dead air.",
 
-    'Do not rewrite, replace or weaken the supplied viral hook unless absolutely necessary for grammatical correctness.',
+    "",
 
-    '2.5 seconds onward: Begin the actual step-by-step crafting process.',
+    "Recommended rhythm:",
 
-    'The crafting process must have enough screen time for every physical action and instruction to be clearly understood.',
+    "0.0–1.0 sec: Creator + finished craft + Craftora DIY + curiosity hook.",
+    "1.0–2.0 sec: Reveal the simple starting material / setup.",
+    "2.0 sec onward: Actual step-by-step crafting actions.",
+    "Final section: Beautiful finished craft reveal.",
+    "Final 2 seconds: Closing wording + CTA + Craftora DIY branding.",
 
-    'Do not sacrifice step clarity merely to make the video shorter.',
+    "",
 
-    'Final approximately 2 seconds: Show the completed craft clearly, then display the supplied closing wording together with the consistent Craftora DIY CTA.',
+    "The exact number and duration of shots may adapt to the craft complexity, but NEVER sacrifice step clarity merely to make cuts faster.",
 
-    'The ending should visually echo the opening or final reveal where possible to encourage seamless looping.',
+    "",
 
-    '',
+    "Every action must remain on screen long enough for a viewer to understand what physically happened.",
 
-    '-------------------------------------------------',
-    'AUDIO / MUSIC',
-    '-------------------------------------------------',
+    "",
 
-    '',
+    "=================================================",
+    "STEP-BY-STEP — HIGHEST PRIORITY",
+    "=================================================",
 
-    'Use a slow-tempo, currently trending style of background music suited to the selected target countries, playing consistently through the entire video from start to finish.',
+    "",
 
-    musicBlock,
+    "STEP ACCURACY HAS HIGHER PRIORITY THAN DECORATION, CINEMATIC EFFECTS OR FAST PACING.",
 
-    '',
+    "",
 
-    'If multiple countries are selected, choose one cohesive track style that blends well across all of them, staying slow-tempo and aesthetic rather than fast or overly energetic.',
+    "Automatically determine the correct number of steps based on the actual craft complexity.",
 
-    'Use only royalty-free or officially licensed audio, such as music available through the Meta Sound Collection or another properly licensed source.',
+    "Prefer approximately 7–10 steps when appropriate, but NEVER force an incorrect number of steps.",
 
-    'Do not use copyrighted commercial music without the appropriate rights.',
+    "",
 
-    '',
+    "EVERY STEP MUST:",
 
-    '-------------------------------------------------',
-    'GROWTH TARGET',
-    '-------------------------------------------------',
+    "1. Show ONE real physical crafting action or one logically inseparable action.",
+    "2. Continue logically from the previous step.",
+    "3. Show the correct material.",
+    "4. Show the correct material position.",
+    "5. Show realistic hand positioning when hands are required.",
+    "6. Show the actual action clearly.",
+    "7. Use a large, clearly visible step number.",
+    "8. Use one short, simple English instruction.",
+    "9. Keep the instruction synchronized with the action shown.",
+    "10. Preserve material shape, quantity and orientation from the previous step unless the current action changes them.",
+    "11. Never skip an action required to reproduce the final result.",
+    "12. Never invent an action that is not physically possible.",
 
-    '',
+    "",
 
-    'This post is one part of a consistent series working toward ' + followerLine + '.',
+    "STRICT CONTINUITY RULE:",
 
-    'Optimize the content for strong watch time, replays, saves, shares, comments and genuine follower conversion.',
+    "The object in Step 2 must logically be the same object created in Step 1.",
+    "The object in Step 3 must logically continue from Step 2.",
+    "Continue this physical continuity until the finished craft.",
 
-    'Never sacrifice tutorial clarity merely to chase a viral effect.',
+    "",
 
-    '',
+    "If the craft requires folding, cutting, rolling, gluing, joining, shaping, painting, wrapping, layering or assembling, show the actual physical action rather than merely showing the result after the action.",
 
-    '-------------------------------------------------',
-    'COUNTRY TARGETING NOTES',
-    '-------------------------------------------------',
+    "",
 
-    '',
+    "Do NOT use visual shortcuts that make the tutorial impossible to reproduce.",
+
+    "",
+
+    "=================================================",
+    "TEXT AND INSTRUCTIONS",
+    "=================================================",
+
+    "",
+
+    "Use short, natural, easy-to-read English.",
+
+    "Header: DIY " + topic.toUpperCase(),
+    "Subheading: STEP-BY-STEP",
+    "Supporting text when appropriate: Easy • Creative • Handmade",
+
+    "",
+
+    "Instruction text must be:",
+    "- Short.",
+    "- Grammatically correct.",
+    "- Naturally phrased.",
+    "- Easy for an international English-speaking audience.",
+    "- Clearly readable on a mobile screen.",
+
+    "",
+
+    "Never generate:",
+    "- Gibberish.",
+    "- Fake words.",
+    "- Random letters.",
+    "- Distorted typography.",
+    "- Unreadable paragraphs.",
+    "- Incorrect step numbers.",
+
+    "",
+
+    "=================================================",
+    "VIRAL RETENTION SYSTEM",
+    "=================================================",
+
+    "",
+
+    "Optimize the video for maximum realistic organic reach, not guaranteed virality.",
+
+    "",
+
+    "1. FIRST-FRAME STOP POWER:",
+    "Show the beautiful finished result with the young adult creator immediately.",
+
+    "2. CURIOSITY GAP:",
+    "Do not reveal the entire process in the first frame. Make the viewer want to discover how the result was created.",
+
+    "3. FAST BUT UNDERSTANDABLE PROGRESSION:",
+    "Use satisfying cuts between genuine physical actions while keeping every important action understandable.",
+
+    "4. VISUAL PAYOFF:",
+    "The final result must look significantly more impressive than the starting material.",
+
+    "5. SAVE TRIGGER:",
+    "Make the tutorial visually organized enough that viewers would want to save it for later.",
+
+    "6. SHARE TRIGGER:",
+    "Make the result surprising, useful, beautiful or clever enough to naturally encourage sharing.",
+
+    "7. COMMENT TRIGGER:",
+    "Use a simple question that can be answered quickly.",
+
+    "8. FOLLOW TRIGGER:",
+    "Make Craftora DIY feel like a recognizable ongoing DIY series rather than a one-off video.",
+
+    "9. LOOP:",
+    "The final visual should naturally echo or transition toward the opening visual whenever physically appropriate.",
+
+    "",
+
+    "=================================================",
+    "COUNTRY TARGETING",
+    "=================================================",
+
+    "",
 
     countryBlock,
 
-    '',
+    "",
 
-    'Favor the aesthetic and materials that overlap best across all selected countries, keeping the caption tone approachable to a general English-speaking audience.',
+    "When multiple countries are selected, prioritize the strongest visual overlap between them rather than creating separate designs.",
 
-    '',
+    "",
 
-    '-------------------------------------------------',
-    'GROWTH AND WATCH-TIME OPTIMIZATION LAYER',
-    '-------------------------------------------------',
+    "=================================================",
+    "MUSIC / AUDIO",
+    "=================================================",
 
-    '',
+    "",
 
-    '1. First-frame rule: after the fixed Craftora DIY opening, immediately show the strongest visual or transformation moment paired with the supplied viral hook.',
+    musicBlock,
 
-    '2. Curiosity gap: the hook should create a reason to continue watching without revealing the entire transformation immediately.',
+    "",
 
-    '3. Loop-friendly ending: the final visual should echo the opening or reveal whenever naturally possible.',
+    "Use ONE cohesive music style for the complete video when multiple countries are selected.",
 
-    '4. Save-trigger framing: present the tutorial as a useful numbered reference that viewers would want to save for later.',
+    "The music should:",
+    "- Match the selected audience characteristics.",
+    "- Support the visual pacing.",
+    "- Remain aesthetically consistent throughout the video.",
+    "- Not overpower the crafting sounds or instructional experience.",
+    "- Be royalty-free or officially licensed for commercial/social use.",
 
-    '5. Comment trigger: the closing wording should encourage a simple, natural response. If the supplied closing uses YES or NO, preserve it exactly.',
+    "",
 
-    '6. Follow conversion: make it clear why a viewer should follow Craftora DIY for future DIY ideas without becoming intrusive.',
+    "Do NOT claim a song is currently trending unless current trend information is actually available.",
+    "If the generation environment has current trend data, select an appropriate currently trending licensed/royalty-free style.",
+    "Otherwise select the closest currently usable licensed aesthetic music category rather than inventing a song title or trend claim.",
 
-    '7. Series identity: preserve the exact Craftora DIY visual identity in every video.',
+    "",
 
-    '8. Posting cadence note: maintain consistency rather than unnecessarily publishing multiple videos too close together when an existing Reel is still gaining momentum.',
+    "=================================================",
+    "VISUAL STYLE",
+    "=================================================",
 
-    '',
+    "",
 
-    '-------------------------------------------------',
-    'CORE CONCEPT',
-    '-------------------------------------------------',
+    "Create a premium professional DIY editorial look.",
 
-    '',
+    "- Clean light or white background.",
+    "- Warm handmade visual identity.",
+    "- Soft premium pastel palette.",
+    "- One or two bright accent colors.",
+    "- Realistic craft materials.",
+    "- Natural shadows.",
+    "- Professional lighting.",
+    "- Crisp edges.",
+    "- Detailed close-up shots.",
+    "- Clear visual separation between steps.",
+    "- Strong mobile readability.",
+    "- Pinterest-quality composition.",
+    "- Vertical social-media-friendly framing.",
 
-    'Create a beautiful step-by-step DIY tutorial showing how to transform simple materials into an impressive finished craft.',
+    "",
 
-    'The craft must be easy enough for an ordinary person to recreate, visually beautiful, creative, satisfying to watch, practical or decorative, highly shareable, suitable for Facebook, suitable for Pinterest-style visual discovery, and appealing to the target countries listed above.',
+    "Avoid unnecessary decoration that distracts from the craft.",
 
-    'The finished craft must create a strong "WOW, I want to make this!" reaction.',
+    "",
 
-    '',
+    "=================================================",
+    "CREATOR CONSISTENCY",
+    "=================================================",
 
-    '-------------------------------------------------',
-    'VISUAL STYLE',
-    '-------------------------------------------------',
+    "",
 
-    '',
+    "The opening creator must always be a YOUNG ADULT FEMALE creator.",
 
-    'Create a premium, clean and professional DIY craft look.',
+    "Keep the presentation:",
+    "- Natural.",
+    "- Friendly.",
+    "- Professional.",
+    "- Craft-focused.",
+    "- Non-sexualized.",
+    "- Authentic-looking.",
 
-    'Use bright attractive craft colors adapted to the blended target-country aesthetic above and the Craftora DIY brand style.',
+    "",
 
-    'Use a clean light or white background, soft natural shadows, realistic craft materials, beautiful handmade appearance, crisp edges, professional craft photography or videography, detailed close-up views, clear visual separation between steps, consistent visual style throughout, high-quality editorial or Pinterest craft aesthetic, and vertical social-media-friendly composition.',
+    "The creator should interact naturally with the finished craft or crafting material."
 
-    'Avoid unnecessary decoration that distracts from the tutorial.',
+    ,
 
-    'Maintain visual continuity from the first physical craft action through the final result.',
+    "Do not let the creator block the craft.",
+    "Do not let the creator dominate the tutorial.",
+    "Do not add unnecessary dialogue.",
+    "Do not turn the video into a talking-head video.",
 
-    '',
+    "",
 
-    '-------------------------------------------------',
-    'STEP-BY-STEP STRUCTURE',
-    '-------------------------------------------------',
+    "=================================================",
+    "CRAFTORA DIY BRANDING RULE",
+    "=================================================",
 
-    '',
+    "",
 
-    'Automatically determine the correct number of steps based on the genuine complexity of the craft.',
+    "Every generated video MUST contain the exact text:",
 
-    'Prefer approximately 7-10 clear steps, but use fewer or more if genuinely necessary.',
+    "\"Craftora DIY\"",
 
-    'Never invent extra steps simply to reach a number.',
+    "",
 
-    'Every step MUST show the ACTUAL physical action required to make the craft.',
+    "Use a small, elegant, premium text treatment rather than a large logo.",
 
-    'Possible actions include cutting, folding, rolling, gluing, joining, shaping, painting, wrapping, layering, assembling and decorating.',
+    "The same treatment must appear consistently:",
+    "- Same visual identity.",
+    "- Same typography style.",
+    "- Same approximate size.",
+    "- Same placement.",
+    "- Same spacing.",
+    "- Same color treatment.",
+    "- Same opening/ending behavior.",
 
-    'Each step must contain:',
+    "",
 
-    '- A large, clear and consistent step number.',
+    "Never randomly redesign the Craftora DIY branding from one video to another.",
 
-    '- A visual demonstration of the exact physical action.',
+    "",
 
-    '- A short, simple English instruction.',
+    "=================================================",
+    "CLOSING — FINAL 2 SECONDS",
+    "=================================================",
 
-    '- Correct material positioning.',
+    "",
 
-    '- Correct hand positioning when hands are necessary.',
+    "For the final 2 seconds:",
 
-    '- Logical progression from the previous step.',
+    "1. Show the COMPLETED CRAFT clearly.",
+    "2. Use the same Craftora DIY brand signature.",
+    "3. Display this closing question:",
 
-    '- Visual continuity with the same materials, colours, workspace and craft.',
+    "\"" + finalEnding + "\"",
 
-    'CRITICAL STEP-INSTRUCTION SYNCHRONIZATION RULE:',
+    "",
 
-    'Every displayed instruction MUST correspond exactly to the physical action visible on screen at that moment.',
+    "4. Display the CTA:",
+    "\"Follow for more DIY ideas\"",
+    "\"Save • Share • Follow\"",
 
-    'Never show text instructions for an action that has not happened yet.',
+    "",
 
-    'Never show an action without the corresponding instruction when that instruction is necessary to understand the step.',
+    "The CTA must be elegant, small and readable without covering the finished craft.",
 
-    'Do NOT invent impossible steps.',
+    "",
 
-    'Do NOT skip an essential physical action required to achieve the final result.',
+    "=================================================",
+    "COMPOSITION",
+    "=================================================",
 
-    'The finished object must actually be achievable by following the displayed instructions in the displayed order.',
+    "",
 
-    '',
+    "Maintain strong visual hierarchy:",
 
-    '-------------------------------------------------',
-    'MATERIAL AND VISUAL CONTINUITY',
-    '-------------------------------------------------',
+    "PRIMARY: Craft and transformation.",
+    "SECONDARY: Creator and emotional reaction.",
+    "TERTIARY: Instructions and branding.",
 
-    '',
+    "",
 
-    'Use the same core materials consistently throughout the tutorial.',
+    "Keep important elements away from screen edges and platform UI areas.",
 
-    'Keep paper type, paper colour, tools, workspace, hand appearance, lighting, camera perspective and craft proportions visually consistent unless a genuine crafting action requires a change.',
+    "Text must remain readable on a smartphone without zooming.",
 
-    'Do not randomly replace or redesign materials between steps.',
+    "Do not overcrowd the frame.",
 
-    'Do not change the final craft design halfway through the tutorial.',
+    "",
 
-    '',
+    "=================================================",
+    "8K ULTRA-HIGH-QUALITY VISUAL DIRECTION",
+    "=================================================",
 
-    '-------------------------------------------------',
-    'VIRAL HOOK',
-    '-------------------------------------------------',
+    "",
 
-    '',
+    "Generate the highest available visual quality, targeting an 8K-quality appearance even when the generation platform outputs a lower native resolution.",
+
+    "Prioritize:",
+
+    "- Extremely sharp craft details.",
+    "- Photorealistic paper texture.",
+    "- Visible fibers and fold lines.",
+    "- Precise cutting edges.",
+    "- Realistic material thickness.",
+    "- Accurate folds.",
+    "- Realistic glue/contact points.",
+    "- Natural hand anatomy.",
+    "- Correct finger positioning.",
+    "- Realistic shadows.",
+    "- Professional studio lighting.",
+    "- High dynamic range appearance.",
+    "- Clean highlights.",
+    "- Natural depth.",
+    "- Crystal-clear typography.",
+    "- Sharp step numbers.",
+    "- No pixelation.",
+    "- No compression artifacts.",
+    "- No blur.",
+    "- No muddy details.",
+    "- No jagged edges.",
+    "- No excessive sharpening.",
+
+    "",
+
+    "The finished video must look like professionally produced premium DIY editorial content, NOT like a low-quality AI-generated video.",
+
+    "",
+
+    "=================================================",
+    "QUALITY CONTROL — FINAL CHECK BEFORE OUTPUT",
+    "=================================================",
+
+    "",
+
+    "Before finalizing, internally verify EVERY item below:",
+
+    "A. Is the opening immediately attractive?",
+    "B. Is the young adult female creator naturally presenting the finished craft?",
+    "C. Is the finished craft clearly visible in the opening?",
+    "D. Is \"Craftora DIY\" displayed consistently?",
+    "E. Is the hook short and curiosity-driven?",
+    "F. Does the video move quickly into the real tutorial?",
+    "G. Does every step show a REAL physical action?",
+    "H. Are all steps in the correct order?",
+    "I. Does each step logically continue from the previous step?",
+    "J. Are materials consistent between steps?",
+    "K. Are hand positions physically realistic?",
+    "L. Are there any skipped actions?",
+    "M. Are instructions short and accurate?",
+    "N. Are all step numbers correct?",
+    "O. Is the text readable on mobile?",
+    "P. Is the final craft actually achievable?",
+    "Q. Is the final result visually impressive?",
+    "R. Does the selected country targeting make sense?",
+    "S. Does the music direction match the selected audience?",
+    "T. Is the music commercially usable/licensed?",
+    "U. Does the video maintain Craftora DIY's permanent visual identity?",
+    "V. Is the final CTA visible without blocking the craft?",
+    "W. Does the ending encourage a simple comment?",
+    "X. Does the final shot naturally support looping?",
+    "Y. Is the visual quality extremely high?",
 
-    'Use the following user-supplied viral hook exactly as the primary opening hook:',
+    "",
 
-    '"' + hook + '"',
+    "If ANY answer is NO, correct the problem BEFORE finalizing the generation.",
 
-    'Place it immediately after the fixed Craftora DIY opening.',
+    "",
 
-    'Make the visual shown with the hook highly curiosity-driven and visually striking.',
+    "=================================================",
+    "NEGATIVE INSTRUCTIONS",
+    "=================================================",
 
-    'Use a satisfying SIMPLE MATERIAL -> CREATIVE PROCESS -> BEAUTIFUL RESULT story.',
+    "",
 
-    'Make the craft look impressive enough that viewers naturally want to SAVE IT, SHARE IT and TRY IT.',
+    "DO NOT:",
 
-    '',
+    "- Copy existing Pinterest, Instagram, TikTok or Facebook designs.",
+    "- Copy copyrighted artwork.",
+    "- Add unrelated objects.",
+    "- Add random decorations.",
+    "- Use duplicate steps.",
+    "- Skip important physical actions.",
+    "- Invent impossible crafting actions.",
+    "- Change the material unexpectedly.",
+    "- Change the object shape without showing the action.",
+    "- Generate malformed hands.",
+    "- Generate extra fingers.",
+    "- Generate distorted materials.",
+    "- Generate impossible folds.",
+    "- Generate fake crafting tools.",
+    "- Generate gibberish.",
+    "- Generate misspelled instructional text.",
+    "- Generate unreadable typography.",
+    "- Generate random watermarks.",
+    "- Generate a random logo.",
+    "- Change the Craftora DIY brand identity.",
+    "- Make the creator sexualized.",
+    "- Let the creator hide the craft.",
+    "- Turn the tutorial into a talking-head video.",
+    "- Use unnecessary cinematic effects that hide the crafting action.",
+    "- Use excessive transitions.",
+    "- Use blurry footage.",
+    "- Use low-quality textures.",
+    "- Use fast music when the selected style is calm.",
+    "- Invent a trending song title.",
+    "- Use copyrighted commercial music without proper licensing.",
 
-    '-------------------------------------------------',
-    'TEXT',
-    '-------------------------------------------------',
+    "",
 
-    '',
+    "=================================================",
+    "FINAL MASTER PRIORITY ORDER",
+    "=================================================",
 
-    'Use short, clear, natural English matched to the blended tone of the target countries above.',
+    "",
 
-    'Opening brand text: CRAFTORA DIY',
+    "When instructions compete with one another, follow this priority order:",
 
-    'Opening hook: ' + hook,
+    "1. PHYSICAL CRAFT ACCURACY.",
+    "2. STEP-BY-STEP CLARITY.",
+    "3. MATERIAL AND ACTION CONTINUITY.",
+    "4. VIEWER RETENTION AND HOOK.",
+    "5. FINISHED-RESULT VISUAL IMPACT.",
+    "6. CRAFTORA DIY BRAND CONSISTENCY.",
+    "7. MOBILE READABILITY.",
+    "8. COUNTRY-SPECIFIC VISUAL/AUDIO ADAPTATION.",
+    "9. DECORATIVE/CINEMATIC ENHANCEMENTS.",
 
-    'Subheading: STEP-BY-STEP',
+    "",
 
-    'Optional small supporting text: Easy - Creative - Handmade',
+    "Never sacrifice physical craft accuracy or instructional clarity merely to create a more cinematic shot.",
 
-    'Keep all instructions extremely easy to understand.',
+    "",
 
-    'Do not use long paragraphs, fake words, random letters, gibberish or distorted typography.',
+    "=================================================",
+    "FINAL INSTRUCTION",
+    "=================================================",
 
-    'All displayed text must be correctly spelled and clearly readable on a mobile phone.',
+    "",
 
-    '',
+    "Create an ORIGINAL, highly attractive, professional, high-retention and viral-ready DIY craft tutorial for Craftora DIY.",
 
-    '-------------------------------------------------',
-    'BRANDING AND CTA',
-    '-------------------------------------------------',
+    "Optimize for maximum realistic organic reach, watch time, saves, shares, comments and follower conversion across:",
 
-    '',
+    countryLabel + ".",
 
-    'At the bottom, add a clean and attractive social-media CTA in the same consistent position every time:',
+    "",
 
-    '"Follow for more DIY ideas"',
+    "The opening MUST feature:",
+    "YOUNG ADULT FEMALE CREATOR + BEAUTIFUL FINISHED CRAFT + SMALL CONSISTENT CRAFTORA DIY BRANDING + STRONG CURIOSITY HOOK.",
 
-    '"Save - Share - Follow"',
+    "",
 
-    'The CTA must be small and elegant and must not cover the craft or any important instructions.',
+    "Then transition immediately into a physically accurate, logically ordered, easy-to-follow step-by-step tutorial.",
 
-    'Do not add the creator name Hiraj to the video.',
+    "",
 
-    'Do not add a logo to the opening. The opening uses the Craftora DIY text only.',
+    "Finish with:",
+    "BEAUTIFUL FINAL CRAFT + SAME CRAFTORA DIY BRANDING + COMMENT QUESTION + SAVE/SHARE/FOLLOW CTA.",
 
-    '',
+    "",
 
-    '-------------------------------------------------',
-    'CLOSING WORDING',
-    '-------------------------------------------------',
+    "Maintain the exact Craftora DIY brand identity across every generation.",
 
-    '',
+    "",
 
-    'In the final approximately 2 seconds, display this closing wording exactly:',
+    "Do not change the permanent brand system simply because the craft or target country changes.",
 
-    '"' + (ending || 'Would you try this? YES or NO? 👇') + '"',
+    "",
 
-    'Place it alongside the consistent Follow-Share-Save CTA.',
+    "FINAL QUALITY STANDARD:",
+    "The viewer should stop, become curious, understand every important crafting action, see a satisfying transformation, want to save/share the tutorial, and have a natural reason to follow Craftora DIY for the next DIY idea."
 
-    'If the closing wording contains a YES or NO question, preserve the YES or NO structure exactly because it is intended to encourage simple comments.',
+  ].join("\n");
 
-    '',
 
-    '-------------------------------------------------',
-    'COMPOSITION',
-    '-------------------------------------------------',
+  document.getElementById("output").value =
+    text;
 
-    '',
+  document.getElementById("output-wrap")
+    .style.display = "block";
 
-    'Create a balanced result where the tutorial steps are extremely easy to follow.',
-
-    'The final craft gets strong visual emphasis.',
-
-    'Step numbers are highly visible.',
-
-    'Text is readable on a mobile phone.',
-
-    'No important element touches the edges.',
-
-    'There is sufficient white space.',
-
-    'The entire result looks professionally designed rather than AI-generated.',
-
-    'Maintain a premium, consistent Craftora DIY visual identity from beginning to end.',
-
-    '',
-
-    '-------------------------------------------------',
-    'QUALITY CONTROL AND SELF-CHECK',
-    '-------------------------------------------------',
-
-    '',
-
-    'Before finalizing, internally perform a complete quality-control check.',
-
-    'CHECK 1: Does the video begin with the exact text "CRAFTORA DIY"?',
-
-    'CHECK 2: Is the Craftora DIY opening text-only with no logo?', 
-
-    'CHECK 3: Is the Craftora DIY opening visually consistent and reusable across every video?',
-
-    'CHECK 4: Does the supplied viral hook appear immediately after the Craftora DIY opening?',
-
-    'CHECK 5: Does the opening hook create genuine curiosity without explaining the entire result too early?',
-
-    'CHECK 6: Does every step show the exact physical action described by its instruction?',
-
-    'CHECK 7: Is every step physically achievable?',
-
-    'CHECK 8: Is every essential crafting action included?',
-
-    'CHECK 9: Are the step numbers in correct sequential order?',
-
-    'CHECK 10: Are the instructions short, accurate, correctly spelled and easy to understand?',
-
-    'CHECK 11: Are materials, colours, tools and craft proportions consistent between steps?',
-
-    'CHECK 12: Are hands anatomically correct whenever hands appear?',
-
-    'CHECK 13: Is the final result actually produced by the displayed steps?',
-
-    'CHECK 14: Is the finished craft visually impressive and satisfying?',
-
-    'CHECK 15: Is the final 2-second closing wording displayed correctly?',
-
-    'CHECK 16: Is the comment trigger natural and easy to answer?',
-
-    'CHECK 17: Is the Follow-Share-Save CTA visible but not intrusive?',
-
-    'CHECK 18: Does the music remain appropriate throughout the complete video?',
-
-    'CHECK 19: Does the entire video maintain Craftora DIY brand consistency?',
-
-    'CHECK 20: Is the visual quality at maximum available resolution with 8K-level detail and fidelity?',
-
-    'If any check fails, correct the problem before finalizing the output.',
-
-    '',
-
-    '-------------------------------------------------',
-    'NEGATIVE INSTRUCTIONS',
-    '-------------------------------------------------',
-
-    '',
-
-    'Do NOT copy an existing Pinterest or Instagram design.',
-
-    'Do NOT copy copyrighted artwork.',
-
-    'Do NOT use random decorations.',
-
-    'Do NOT add unrelated objects.',
-
-    'Do NOT create duplicate steps.',
-
-    'Do NOT show impossible crafting actions.',
-
-    'Do NOT show malformed hands or extra fingers.',
-
-    'Do NOT show distorted materials.',
-
-    'Do NOT use blurry images.',
-
-    'Do NOT use unreadable text.',
-
-    'Do NOT use gibberish.',
-
-    'Do NOT use a random watermark.',
-
-    'Do NOT make the tutorial confusing.',
-
-    'Do NOT make the final craft unrealistic.',
-
-    'Do NOT switch to a completely different colour palette or pacing style from previous Craftora DIY videos.',
-
-    'Do NOT change the fixed Craftora DIY opening style between videos.',
-
-    'Do NOT replace the words CRAFTORA DIY with another brand name.',
-
-    'Do NOT add a logo to the opening.',
-
-    'Do NOT add Hiraj to the video.',
-
-    'Do NOT use fast or high-energy music when a slow aesthetic style is requested.',
-
-    'Do NOT use copyrighted commercial music without appropriate rights.',
-
-    '',
-
-    '-------------------------------------------------',
-    'ULTRA-HD 8K-QUALITY VISUAL FIDELITY',
-    '-------------------------------------------------',
-
-    '',
-
-    'Generate the final output using the maximum available resolution supported by the video generation system, with 8K-level visual fidelity wherever technically possible.',
-
-    'Prioritize extremely high resolution, ultra-sharp detail, crystal-clear craft textures, precise edges, professional studio-quality photography, photorealistic materials, realistic paper texture, visible paper fibres and folds, realistic shadows and depth, high dynamic range appearance, excellent lighting, natural highlights, fine details, sharp typography and perfectly legible step numbers.',
-
-    'Prioritize realistic hand anatomy, realistic finger placement, realistic paper thickness, realistic cutting edges, realistic folding lines, realistic glue points, accurate material interaction and physically believable crafting actions.',
-
-    'No pixelation.',
-
-    'No compression artifacts.',
-
-    'No blur.',
-
-    'No artificial noise.',
-
-    'No jagged edges.',
-
-    'No muddy details.',
-
-    'No oversharpening.',
-
-    'No low-resolution appearance.',
-
-    'Maintain maximum clarity even on a mobile phone screen.',
-
-    'Use professional commercial product-photography quality combined with premium DIY editorial design.',
-
-    'The result should look like a professionally filmed premium DIY craft tutorial, not a low-quality AI-generated video.',
-
-    'PRIORITY: maximum available resolution, 8K-level visual fidelity, realistic materials, realistic hands, precise craft details, clean typography, professional lighting, consistent Craftora DIY branding and accurate step-by-step execution.',
-
-    '',
-
-    '-------------------------------------------------',
-    'FINAL INSTRUCTION',
-    '-------------------------------------------------',
-
-    '',
-
-    'Create an ORIGINAL, highly attractive, professional and viral-ready DIY craft tutorial for Craftora DIY.',
-
-    'Strictly follow the fixed Craftora DIY brand identity, exact timing structure, editable viral hook, accurate step-by-step instructions, music rules, country targeting rules, quality-control checks and 8K-quality visual direction.',
-
-    'Optimize for maximum realistic organic reach, watch time, saves, shares, comments and genuine follower growth across: ' + countryLabel + '.',
-
-    '',
-
-    'The only things that should normally need to change for each new generation are:',
-
-    'THING TO MAKE: [INSERT DIY CRAFT]',
-
-    'VIRAL HOOK: [INSERT VIRAL HOOK]',
-
-    'TARGET COUNTRIES: [INSERT 1-4 COUNTRIES]',
-
-    'CLOSING WORDING: [INSERT COMMENT-DRIVING CLOSING]',
-
-    '',
-
-    'Everything else, including the Craftora DIY brand style, fixed opening branding, pacing framework, step-by-step accuracy requirements, quality standards and music approach, should remain consistent across every video.',
-
-    'Make the final result visually satisfying, highly saveable, highly shareable, highly commentable and optimized to stop scrolling and build repeat viewers for Craftora DIY.'
-
-  ].join('\n');
-
-  document.getElementById('output').value = text;
-
-  document.getElementById('output-wrap').style.display = 'block';
-
-  document.getElementById('output-wrap')
+  document.getElementById("output-wrap")
     .scrollIntoView({
-      behavior: 'smooth',
-      block: 'nearest'
+      behavior: "smooth",
+      block: "nearest"
     });
 
 }
 
+
+/* =========================================================
+   COPY
+   ========================================================= */
+
 function copyPrompt() {
 
   const out =
-    document.getElementById('output');
+    document.getElementById("output");
 
   out.select();
-
-  out.setSelectionRange(0, 999999);
+  out.setSelectionRange(
+    0,
+    999999
+  );
 
   const btn =
-    document.getElementById('copy-btn');
+    document.getElementById("copy-btn");
 
   const old =
     btn.textContent;
 
+
   const showCopied = () => {
 
-    btn.textContent = 'Copied';
+    btn.textContent =
+      "Copied ✓";
 
     setTimeout(() => {
 
-      btn.textContent = old;
+      btn.textContent =
+        old;
 
     }, 1500);
 
   };
+
 
   if (
     navigator.clipboard &&
@@ -1369,8 +1605,7 @@ function copyPrompt() {
 
         try {
 
-          document.execCommand('copy');
-
+          document.execCommand("copy");
           showCopied();
 
         } catch (e) {}
@@ -1381,8 +1616,7 @@ function copyPrompt() {
 
     try {
 
-      document.execCommand('copy');
-
+      document.execCommand("copy");
       showCopied();
 
     } catch (e) {}
@@ -1391,19 +1625,37 @@ function copyPrompt() {
 
 }
 
-document.getElementById('topic')
-  .addEventListener('input', () => {
 
-    document.getElementById('error')
-      .style.display = 'none';
+/* =========================================================
+   LIVE ERROR CLEARING
+   ========================================================= */
+
+document
+  .getElementById("topic")
+  .addEventListener("input", () => {
+
+    document.getElementById("error")
+      .style.display = "none";
 
   });
 
-document.getElementById('hook')
-  .addEventListener('input', () => {
 
-    document.getElementById('error')
-      .style.display = 'none';
+document
+  .getElementById("hook")
+  .addEventListener("input", () => {
+
+    document.getElementById("error")
+      .style.display = "none";
+
+  });
+
+
+document
+  .getElementById("ending")
+  .addEventListener("input", () => {
+
+    document.getElementById("error")
+      .style.display = "none";
 
   });
 
