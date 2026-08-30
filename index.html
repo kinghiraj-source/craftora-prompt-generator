@@ -2,1135 +2,1266 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 
-<meta name="viewport"
-      content="width=device-width,
-      initial-scale=1,
-      viewport-fit=cover">
+<title>TerraLume — Travel Reel Prompt Generator</title>
 
-<title>TerraLume — Cinematic Travel Reel Generator</title>
-
-<!-- iPhone / iPad Home Screen -->
+<meta name="theme-color" content="#18352B">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
 <meta name="apple-mobile-web-app-title" content="TerraLume">
 
-<!-- Android / PWA -->
-<meta name="theme-color" content="#18352B">
-<link rel="manifest" href="manifest.webmanifest">
-
 <style>
-
-*{
-  box-sizing:border-box;
-}
+*{box-sizing:border-box}
 
 body{
-  margin:0;
-  padding:20px 14px 45px;
-  background:
-    linear-gradient(
-      180deg,
-      #edf3ef 0%,
-      #f8faf8 100%
-    );
-  color:#20352d;
-  font-family:
-    -apple-system,
-    BlinkMacSystemFont,
-    "SF Pro Display",
-    "Segoe UI",
-    sans-serif;
+margin:0;
+padding:20px 14px 45px;
+background:linear-gradient(180deg,#edf3ef,#fafcfb);
+color:#20352d;
+font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Segoe UI",sans-serif
 }
 
-.container{
-  max-width:580px;
-  margin:auto;
-}
+.container{max-width:600px;margin:auto}
 
 .header{
-  text-align:center;
-  padding:12px 0 22px;
+text-align:center;
+padding:12px 0 24px
 }
 
 .brand{
-  font-family:
-    Georgia,
-    "Times New Roman",
-    serif;
-
-  font-size:32px;
-  font-weight:700;
-  letter-spacing:2px;
-  color:#18352B;
+font-family:Georgia,serif;
+font-size:33px;
+font-weight:700;
+letter-spacing:2px;
+color:#18352B
 }
 
 .subtitle{
-  margin-top:6px;
-  font-size:12px;
-  color:#718078;
-  letter-spacing:.4px;
+font-size:12px;
+color:#718078;
+margin-top:6px
 }
 
 .card{
-  background:#ffffff;
-  border:1px solid #dce6e0;
-  border-radius:15px;
-  padding:16px;
-  margin-bottom:13px;
-  box-shadow:
-    0 4px 16px rgba(24,53,43,.045);
+background:#fff;
+border:1px solid #dce6e0;
+border-radius:15px;
+padding:16px;
+margin-bottom:13px;
+box-shadow:0 4px 16px rgba(24,53,43,.05)
 }
 
-.section-title{
-  font-family:Georgia,serif;
-  color:#18352B;
-  font-size:17px;
-  font-weight:700;
-  margin-bottom:12px;
+.title{
+font-family:Georgia,serif;
+font-size:17px;
+font-weight:700;
+color:#18352B;
+margin-bottom:13px
 }
 
 label{
-  display:block;
-  font-size:12px;
-  font-weight:600;
-  color:#66766e;
-  margin:10px 0 6px;
+display:block;
+font-size:12px;
+font-weight:600;
+color:#66766e;
+margin:10px 0 6px
 }
 
-input,
-select,
-textarea{
-  width:100%;
-  border:1px solid #d9e3dd;
-  background:#fafcfb;
-  color:#20352d;
-  border-radius:10px;
-  padding:12px;
-  font-family:inherit;
-  font-size:14px;
-}
-
-input:focus,
-select:focus,
-textarea:focus{
-  outline:2px solid #a7bdb2;
-  outline-offset:1px;
+select,input,textarea{
+width:100%;
+border:1px solid #d9e3dd;
+background:#fafcfb;
+color:#20352d;
+border-radius:10px;
+padding:12px;
+font-family:inherit;
+font-size:14px
 }
 
 textarea{
-  min-height:430px;
-  resize:vertical;
+min-height:460px;
+resize:vertical;
+font-family:monospace;
+font-size:11px;
+line-height:1.55
+}
 
-  font-family:
-    ui-monospace,
-    SFMono-Regular,
-    Menlo,
-    monospace;
-
-  font-size:11px;
-  line-height:1.55;
+.grid{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:10px
 }
 
 .locked{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-
-  background:#e5eee9;
-  color:#18352B;
-
-  border-radius:10px;
-  padding:12px;
-
-  font-size:13px;
-  font-weight:700;
+display:flex;
+justify-content:space-between;
+align-items:center;
+background:#e5eee9;
+border-radius:10px;
+padding:12px;
+font-size:13px;
+font-weight:700;
+color:#18352B
 }
 
-.lock{
-  font-size:11px;
-  opacity:.7;
-}
-
-.row{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:10px;
-}
-
-.note{
-  margin-top:7px;
-  font-size:11px;
-  line-height:1.45;
-  color:#89958f;
-}
-
-.generate{
-  width:100%;
-  border:0;
-  border-radius:11px;
-
-  padding:15px;
-
-  background:#18352B;
-  color:white;
-
-  font-size:15px;
-  font-weight:700;
-
-  cursor:pointer;
-}
-
-.generate:active{
-  transform:scale(.99);
-}
-
-.output-header{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-
-  margin-bottom:8px;
+button.generate{
+width:100%;
+border:0;
+border-radius:11px;
+padding:15px;
+background:#18352B;
+color:white;
+font-size:15px;
+font-weight:700
 }
 
 .copy{
-  border:0;
-  background:#e5eee9;
-  color:#18352B;
-
-  border-radius:20px;
-  padding:8px 13px;
-
-  font-size:12px;
-  font-weight:700;
+border:0;
+border-radius:20px;
+padding:8px 13px;
+background:#e5eee9;
+color:#18352B;
+font-weight:700
 }
 
-.error{
-  display:none;
-  color:#b34d45;
-  font-size:12px;
-  margin:9px 2px;
+.outputHead{
+display:flex;
+justify-content:space-between;
+align-items:center
+}
+
+.note{
+font-size:11px;
+line-height:1.5;
+color:#89958f;
+margin-top:7px
 }
 
 .credit{
-  text-align:center;
-  margin-top:20px;
-
-  font-size:11px;
-  color:#8a9690;
+text-align:center;
+font-size:11px;
+color:#8a9690;
+margin-top:20px
 }
 
-.credit strong{
-  color:#18352B;
-}
+.credit strong{color:#18352B}
 
+.error{
+display:none;
+font-size:12px;
+color:#b34d45;
+margin:9px 2px
+}
 </style>
 </head>
-
 
 <body>
 
 <div class="container">
 
-<!-- ============================= -->
-<!-- HEADER -->
-<!-- ============================= -->
+<!-- BRAND -->
 
 <div class="header">
+<div class="brand">TerraLume</div>
+<div class="subtitle">
+Cinematic Travel Reel Prompt Generator
+</div>
+</div>
 
-  <div class="brand">
-    TerraLume
-  </div>
 
-  <div class="subtitle">
-    Cinematic Travel Reel Generator
-  </div>
+<!-- =========================
+     AUDIENCE TARGET LOCATIONS
+========================= -->
+
+<div class="card">
+
+<div class="title">
+🌎 Audience Target Locations
+</div>
+
+<label>Target Country 1</label>
+<select class="country" id="country1"></select>
+
+<label>Target Country 2</label>
+<select class="country" id="country2"></select>
+
+<label>Target Country 3</label>
+<select class="country" id="country3"></select>
+
+<label>Target Country 4</label>
+<select class="country" id="country4"></select>
+
+<div class="note">
+Select up to 4 high-value international audience countries.
+These countries are used inside the generated prompt to guide
+the content, music direction and audience appeal.
+</div>
 
 </div>
 
 
-<!-- ============================= -->
-<!-- LOCATION -->
-<!-- ============================= -->
+<!-- =========================
+     ACTUAL LOCATION
+========================= -->
 
 <div class="card">
 
-  <div class="section-title">
-    📍 Location
-  </div>
+<div class="title">
+📍 Video Location
+</div>
 
-  <label>
-    Target Country
-  </label>
+<label>Country Where The Location Is</label>
+<select id="locationCountry"></select>
 
-  <select id="country">
+<label>Actual Location / Landmark</label>
 
-    <option>United States</option>
-    <option>Canada</option>
-    <option>United Kingdom</option>
-    <option>Australia</option>
-    <option>Switzerland</option>
-    <option>Norway</option>
-    <option>New Zealand</option>
-    <option>Germany</option>
-    <option>France</option>
-    <option>Netherlands</option>
-    <option>Sweden</option>
-    <option>Denmark</option>
-    <option>Ireland</option>
+<input
+id="location"
+placeholder="Example: Banff National Park"
+>
 
-  </select>
-
-
-  <label>
-    Actual Location
-  </label>
-
-  <input
-    id="location"
-    type="text"
-    placeholder="e.g. Banff National Park"
-  >
-
-  <div class="note">
-    Target Country controls the international audience direction.
-    Location is the actual place shown in the video.
-  </div>
+<div class="note">
+This is the real place shown in the video.
+</div>
 
 </div>
 
 
-<!-- ============================= -->
-<!-- HOOK -->
-<!-- ============================= -->
+<!-- =========================
+     VIRAL HOOK
+========================= -->
 
 <div class="card">
 
-  <div class="section-title">
-    🎣 Viral Hook
-  </div>
+<div class="title">
+🎣 Viral Hook
+</div>
 
-  <label>
-    Opening Hook — Editable
-  </label>
+<label>Opening Hook — Fully Editable</label>
 
-  <input
-    id="hook"
-    type="text"
-    placeholder="Write your own hook or leave blank for AI"
-  >
+<input
+id="hook"
+placeholder="Example: This place looks unreal... but it's actually real."
+>
 
-  <div class="note">
-    Hook is NOT locked. Change it whenever you want.
-  </div>
+<div class="note">
+You can change the hook for every Reel. It is NOT locked.
+</div>
 
 </div>
 
 
-<!-- ============================= -->
-<!-- WILDLIFE -->
-<!-- ============================= -->
+<!-- =========================
+     WILDLIFE
+========================= -->
 
 <div class="card">
 
-  <div class="section-title">
-    🦅 Wildlife
-  </div>
+<div class="title">
+🦅 Location Wildlife
+</div>
 
-  <label>
-    Animal
-  </label>
+<label>Wildlife Mode</label>
 
-  <select id="animal">
+<select id="animal">
 
-    <option value="auto">
-      Auto Match — Recommended
-    </option>
+<option value="auto">
+Auto Match Location Wildlife
+</option>
 
-    <option value="none">
-      No Animal
-    </option>
+<option value="none">
+No Animal
+</option>
 
-    <option value="custom">
-      Custom Animal
-    </option>
+<option value="custom">
+Custom Animal
+</option>
 
-  </select>
+</select>
 
+<input
+id="customAnimal"
+placeholder="Example: Red Fox"
+style="display:none;margin-top:9px"
+>
 
-  <input
-    id="customAnimal"
-    type="text"
-    placeholder="e.g. Red Fox"
-    style="display:none;margin-top:9px;"
-  >
+<div class="note">
+Auto Match only uses animals naturally associated with the
+selected location. Never force an animal into an unsuitable scene.
+</div>
 
 </div>
 
 
-<!-- ============================= -->
-<!-- MOOD + MUSIC -->
-<!-- ============================= -->
+<!-- =========================
+     CREATIVE
+========================= -->
 
 <div class="card">
 
-  <div class="section-title">
-    🎬 Creative Direction
-  </div>
+<div class="title">
+🎬 Creative Direction
+</div>
 
-  <div class="row">
+<div class="grid">
 
-    <div>
+<div>
 
-      <label>
-        Mood
-      </label>
+<label>Mood</label>
 
-      <select id="mood">
+<select id="mood">
 
-        <option>Auto Match</option>
-        <option>Cinematic</option>
-        <option>Dreamy</option>
-        <option>Epic</option>
-        <option>Adventure</option>
-        <option>Peaceful</option>
-        <option>Mysterious</option>
+<option>Auto Match</option>
+<option>Cinematic</option>
+<option>Dreamy</option>
+<option>Epic</option>
+<option>Adventure</option>
+<option>Peaceful</option>
+<option>Mysterious</option>
 
-      </select>
-
-    </div>
-
-
-    <div>
-
-      <label>
-        Music
-      </label>
-
-      <select id="music">
-
-        <option>
-          Auto Match Current Travel Trend
-        </option>
-
-        <option>Cinematic</option>
-        <option>Emotional</option>
-        <option>Dreamy</option>
-        <option>Epic</option>
-        <option>Peaceful</option>
-
-      </select>
-
-    </div>
-
-  </div>
+</select>
 
 </div>
 
 
-<!-- ============================= -->
-<!-- CLOSING -->
-<!-- ============================= -->
+<div>
 
-<div class="card">
+<label>Music Direction</label>
 
-  <div class="section-title">
-    💬 Closing CTA
-  </div>
+<select id="music">
 
-  <label>
-    Final Wording — Editable
-  </label>
+<option>Current Travel Trend Direction</option>
+<option>Cinematic</option>
+<option>Emotional</option>
+<option>Dreamy</option>
+<option>Epic</option>
+<option>Peaceful</option>
 
-  <input
-    id="closing"
-    type="text"
-    placeholder="Would you visit this place? YES or NO? 👇"
-  >
+</select>
 
-  <div class="note">
-    Closing wording is fully editable. It is not permanently locked.
-  </div>
+</div>
+
+</div>
 
 </div>
 
 
-<!-- ============================= -->
-<!-- PRODUCTION -->
-<!-- ============================= -->
+<!-- =========================
+     CLOSING CTA
+========================= -->
 
 <div class="card">
 
-  <div class="section-title">
-    🎥 Production Settings
-  </div>
+<div class="title">
+💬 Closing CTA
+</div>
+
+<label>Final Wording — Fully Editable</label>
+
+<input
+id="closing"
+placeholder="Would you visit this place? YES or NO? 👇"
+>
+
+<div class="note">
+Change this whenever you want to test different engagement CTAs.
+</div>
+
+</div>
 
 
-  <div class="locked">
+<!-- =========================
+     VIDEO SETTINGS
+========================= -->
 
-    <span>
-      EXACTLY 10 SECONDS
-    </span>
+<div class="card">
 
-    <span class="lock">
-      🔒 LOCKED
-    </span>
+<div class="title">
+🎥 Video Settings
+</div>
 
-  </div>
+<div class="locked">
 
+<span>EXACTLY 10 SECONDS</span>
+<span>🔒 LOCKED</span>
 
-  <label>
-    Quality
-  </label>
+</div>
 
-  <select id="quality">
+<label>Video Quality</label>
 
-    <option>
-      Premium 8K Cinematic Quality
-    </option>
+<select id="quality">
 
-    <option>
-      Ultra Photorealistic 4K
-    </option>
+<option>Premium 8K Cinematic Quality</option>
+<option>Ultra Photorealistic 4K</option>
 
-  </select>
+</select>
 
+<label>Audio</label>
 
-  <label>
-    Natural Sound
-  </label>
+<select id="audio">
 
-  <select id="sound">
+<option>Natural Location Sounds + Music</option>
+<option>Natural Sounds Only</option>
+<option>Music Focused</option>
 
-    <option>
-      Authentic Location Sounds + Music
-    </option>
-
-    <option>
-      Natural Sounds Only
-    </option>
-
-    <option>
-      Music Focused
-    </option>
-
-  </select>
+</select>
 
 </div>
 
 
 <button
-  class="generate"
-  onclick="generatePrompt()"
+class="generate"
+onclick="generatePrompt()"
 >
-  Generate TerraLume Master Prompt
+Generate TerraLume Master Prompt
 </button>
 
-
-<div
-  id="error"
-  class="error"
-></div>
+<div id="error" class="error"></div>
 
 
-<!-- ============================= -->
 <!-- OUTPUT -->
-<!-- ============================= -->
 
 <div
-  class="card"
-  id="outputCard"
-  style="display:none;margin-top:14px;"
+class="card"
+id="outputCard"
+style="display:none;margin-top:14px"
 >
 
-  <div class="output-header">
+<div class="outputHead">
 
-    <div class="section-title"
-         style="margin:0;">
-      Generated Prompt
-    </div>
+<div class="title" style="margin:0">
+Generated Prompt
+</div>
 
-    <button
-      class="copy"
-      onclick="copyPrompt()"
-      id="copyButton"
-    >
-      Copy
-    </button>
-
-  </div>
-
-
-  <textarea
-    id="output"
-    readonly
-  ></textarea>
+<button
+class="copy"
+onclick="copyPrompt()"
+id="copyBtn"
+>
+Copy
+</button>
 
 </div>
 
+<textarea id="output" readonly></textarea>
 
-<!-- ============================= -->
-<!-- CREDIT -->
-<!-- ============================= -->
+</div>
+
 
 <div class="credit">
-
-  TerraLume<br>
-
-  Created by
-  <strong>Hiraj</strong>
-
+TerraLume<br>
+Created by <strong>Hiraj</strong>
 </div>
-
 
 </div>
 
 
 <script>
 
-/* ==============================
+/* ==========================================
+   WORLD COUNTRY DATABASE
+========================================== */
+
+const countries = [
+
+"Afghanistan",
+"Albania",
+"Algeria",
+"Andorra",
+"Angola",
+"Antigua and Barbuda",
+"Argentina",
+"Armenia",
+"Australia",
+"Austria",
+"Azerbaijan",
+"Bahamas",
+"Bahrain",
+"Bangladesh",
+"Barbados",
+"Belarus",
+"Belgium",
+"Belize",
+"Benin",
+"Bhutan",
+"Bolivia",
+"Bosnia and Herzegovina",
+"Botswana",
+"Brazil",
+"Brunei",
+"Bulgaria",
+"Burkina Faso",
+"Burundi",
+"Cabo Verde",
+"Cambodia",
+"Cameroon",
+"Canada",
+"Central African Republic",
+"Chad",
+"Chile",
+"China",
+"Colombia",
+"Comoros",
+"Costa Rica",
+"Côte d'Ivoire",
+"Croatia",
+"Cuba",
+"Cyprus",
+"Czechia",
+"Democratic Republic of the Congo",
+"Denmark",
+"Djibouti",
+"Dominica",
+"Dominican Republic",
+"Ecuador",
+"Egypt",
+"El Salvador",
+"Equatorial Guinea",
+"Eritrea",
+"Estonia",
+"Eswatini",
+"Ethiopia",
+"Fiji",
+"Finland",
+"France",
+"Gabon",
+"Gambia",
+"Georgia",
+"Germany",
+"Ghana",
+"Greece",
+"Grenada",
+"Guatemala",
+"Guinea",
+"Guinea-Bissau",
+"Guyana",
+"Haiti",
+"Honduras",
+"Hungary",
+"Iceland",
+"India",
+"Indonesia",
+"Iran",
+"Iraq",
+"Ireland",
+"Israel",
+"Italy",
+"Jamaica",
+"Japan",
+"Jordan",
+"Kazakhstan",
+"Kenya",
+"Kiribati",
+"Kosovo",
+"Kuwait",
+"Kyrgyzstan",
+"Laos",
+"Latvia",
+"Lebanon",
+"Lesotho",
+"Liberia",
+"Libya",
+"Liechtenstein",
+"Lithuania",
+"Luxembourg",
+"Madagascar",
+"Malawi",
+"Malaysia",
+"Maldives",
+"Mali",
+"Malta",
+"Marshall Islands",
+"Mauritania",
+"Mauritius",
+"Mexico",
+"Micronesia",
+"Moldova",
+"Monaco",
+"Mongolia",
+"Montenegro",
+"Morocco",
+"Mozambique",
+"Myanmar",
+"Namibia",
+"Nauru",
+"Nepal",
+"Netherlands",
+"New Zealand",
+"Nicaragua",
+"Niger",
+"Nigeria",
+"North Korea",
+"North Macedonia",
+"Norway",
+"Oman",
+"Pakistan",
+"Palau",
+"Palestine",
+"Panama",
+"Papua New Guinea",
+"Paraguay",
+"Peru",
+"Philippines",
+"Poland",
+"Portugal",
+"Qatar",
+"Republic of the Congo",
+"Romania",
+"Russia",
+"Rwanda",
+"Saint Kitts and Nevis",
+"Saint Lucia",
+"Saint Vincent and the Grenadines",
+"Samoa",
+"San Marino",
+"São Tomé and Príncipe",
+"Saudi Arabia",
+"Senegal",
+"Serbia",
+"Seychelles",
+"Sierra Leone",
+"Singapore",
+"Slovakia",
+"Slovenia",
+"Solomon Islands",
+"Somalia",
+"South Africa",
+"South Korea",
+"South Sudan",
+"Spain",
+"Sri Lanka",
+"Sudan",
+"Suriname",
+"Sweden",
+"Switzerland",
+"Syria",
+"Taiwan",
+"Tajikistan",
+"Tanzania",
+"Thailand",
+"Timor-Leste",
+"Togo",
+"Tonga",
+"Trinidad and Tobago",
+"Tunisia",
+"Türkiye",
+"Turkmenistan",
+"Tuvalu",
+"Uganda",
+"Ukraine",
+"United Arab Emirates",
+"United Kingdom",
+"United States",
+"Uruguay",
+"Uzbekistan",
+"Vanuatu",
+"Vatican City",
+"Venezuela",
+"Vietnam",
+"Yemen",
+"Zambia",
+"Zimbabwe"
+
+];
+
+
+/* ==========================================
+   POPULATE ALL COUNTRY DROPDOWNS
+========================================== */
+
+const selects =
+document.querySelectorAll(".country");
+
+selects.forEach((select,index)=>{
+
+countries.forEach(country=>{
+
+const option =
+document.createElement("option");
+
+option.value=country;
+option.textContent=country;
+
+select.appendChild(option);
+
+});
+
+});
+
+
+const locationCountry =
+document.getElementById("locationCountry");
+
+countries.forEach(country=>{
+
+const option =
+document.createElement("option");
+
+option.value=country;
+option.textContent=country;
+
+locationCountry.appendChild(option);
+
+});
+
+
+/* DEFAULT AUDIENCE COUNTRIES */
+
+document.getElementById("country1").value =
+"United States";
+
+document.getElementById("country2").value =
+"Canada";
+
+document.getElementById("country3").value =
+"United Kingdom";
+
+document.getElementById("country4").value =
+"Australia";
+
+
+/* DEFAULT LOCATION COUNTRY */
+
+locationCountry.value="Canada";
+
+
+/* ==========================================
    ANIMAL SWITCH
-============================== */
+========================================== */
 
 document
-  .getElementById("animal")
-  .addEventListener("change", function(){
+.getElementById("animal")
+.addEventListener("change",function(){
 
-    const custom =
-      document.getElementById("customAnimal");
+const field =
+document.getElementById("customAnimal");
 
-    if(this.value === "custom"){
-      custom.style.display = "block";
-    }else{
-      custom.style.display = "none";
-    }
+field.style.display =
+this.value==="custom"
+? "block"
+: "none";
 
-  });
+});
 
 
-/* ==============================
-   GENERATOR
-============================== */
+/* ==========================================
+   GENERATE
+========================================== */
 
 function generatePrompt(){
 
-  const country =
-    document.getElementById("country").value;
+const audience=[
 
-  const location =
-    document.getElementById("location")
-    .value
-    .trim();
+document.getElementById("country1").value,
+document.getElementById("country2").value,
+document.getElementById("country3").value,
+document.getElementById("country4").value
 
-  const hook =
-    document.getElementById("hook")
-    .value
-    .trim();
-
-  const closing =
-    document.getElementById("closing")
-    .value
-    .trim();
-
-  const animal =
-    document.getElementById("animal").value;
-
-  const customAnimal =
-    document.getElementById("customAnimal")
-    .value
-    .trim();
-
-  const mood =
-    document.getElementById("mood").value;
-
-  const music =
-    document.getElementById("music").value;
-
-  const quality =
-    document.getElementById("quality").value;
-
-  const sound =
-    document.getElementById("sound").value;
+];
 
 
-  const error =
-    document.getElementById("error");
+const country =
+document.getElementById("locationCountry").value;
+
+const location =
+document.getElementById("location")
+.value.trim();
+
+const hook =
+document.getElementById("hook")
+.value.trim();
+
+const closing =
+document.getElementById("closing")
+.value.trim();
+
+const animalMode =
+document.getElementById("animal").value;
+
+const customAnimal =
+document.getElementById("customAnimal")
+.value.trim();
+
+const mood =
+document.getElementById("mood").value;
+
+const music =
+document.getElementById("music").value;
+
+const quality =
+document.getElementById("quality").value;
+
+const audio =
+document.getElementById("audio").value;
 
 
-  if(!location){
-
-    error.textContent =
-      "Please enter the actual location.";
-
-    error.style.display = "block";
-
-    return;
-
-  }
+const error =
+document.getElementById("error");
 
 
-  if(
-    animal === "custom" &&
-    !customAnimal
-  ){
+if(!location){
 
-    error.textContent =
-      "Please enter the custom animal.";
+error.textContent=
+"Please enter the actual video location.";
 
-    error.style.display = "block";
+error.style.display="block";
 
-    return;
+return;
 
-  }
+}
 
 
-  error.style.display = "none";
+if(
+animalMode==="custom" &&
+!customAnimal
+){
+
+error.textContent=
+"Please enter the custom animal.";
+
+error.style.display="block";
+
+return;
+
+}
 
 
-  const finalHook =
-    hook ||
-    "[Create a powerful curiosity-driven hook specific to this location.]";
+error.style.display="none";
 
 
-  const finalClosing =
-    closing ||
-    "Would you visit this place? YES or NO? 👇";
+const finalHook =
+hook ||
+"[Create a powerful curiosity-driven hook specific to the location.]";
 
 
-  let animalInstruction;
+const finalClosing =
+closing ||
+"Would you visit this place? YES or NO? 👇";
 
 
-  if(animal === "none"){
+let wildlife="";
 
-    animalInstruction =
-      "Do not intentionally introduce wildlife.";
 
-  }
+if(animalMode==="none"){
 
-  else if(animal === "custom"){
+wildlife=
+"Do not intentionally introduce wildlife.";
 
-    animalInstruction = `
-CUSTOM WILDLIFE:
+}
+
+else if(animalMode==="custom"){
+
+wildlife=`
+
+CUSTOM ANIMAL:
 ${customAnimal}
 
-Use this animal only if it is geographically believable for the selected location.
+Use only when geographically believable for the selected location.
 Keep anatomy, scale, movement and behaviour completely realistic.
 `;
 
-  }
+}
 
-  else{
+else{
 
-    animalInstruction = `
-AUTO WILDLIFE:
-Automatically determine whether a visually interesting animal naturally associated with the selected location would improve the Reel.
+wildlife=`
 
-If appropriate, include one.
-If not appropriate, do not force wildlife into the scene.
+AUTO LOCATION WILDLIFE:
 
-Any wildlife must be geographically authentic, anatomically correct,
-realistically scaled and naturally behaving.
+Determine whether an animal naturally associated with
+${location}, ${country}, can enhance the visual story.
+
+If appropriate, include one realistic animal.
+
+If inappropriate, do not force wildlife into the scene.
+
+Wildlife must be geographically authentic,
+correctly scaled, anatomically correct and naturally behaving.
 `;
 
-  }
+}
 
 
-  const prompt = `
+/* ==========================================
+   MASTER PROMPT
+========================================== */
 
-==================================================
-TERRALUME — MASTER CINEMATIC TRAVEL REEL PROMPT
-==================================================
+const prompt = `
 
-CREATE AN ORIGINAL, ULTRA-REALISTIC, PREMIUM TRAVEL
-VIDEO FOR THE FACEBOOK PAGE:
+========================================================
+TERRALUME — MASTER CINEMATIC TRAVEL REEL ENGINE
+========================================================
 
-TERRALUME
+BRAND:
+TerraLume
 
-==================================================
-CORE VARIABLES
-==================================================
+CREATOR:
+Hiraj
 
-TARGET AUDIENCE COUNTRY:
+========================================================
+AUDIENCE TARGETING
+========================================================
+
+PRIMARY TARGET COUNTRY:
+${audience[0]}
+
+SECONDARY TARGET COUNTRY:
+${audience[1]}
+
+TARGET COUNTRY 3:
+${audience[2]}
+
+TARGET COUNTRY 4:
+${audience[3]}
+
+These four countries define the intended international
+audience direction.
+
+Create universally attractive travel storytelling while
+subtly considering the visual interests and short-form
+content behaviour of these target audiences.
+
+Do not add country flags or unnecessary country labels
+inside the video.
+
+========================================================
+ACTUAL VIDEO LOCATION
+========================================================
+
+COUNTRY:
 ${country}
 
-ACTUAL LOCATION:
+LOCATION:
 ${location}
 
-OPENING HOOK:
+The actual location must remain geographically authentic.
+
+========================================================
+OPENING HOOK
+========================================================
+
 ${finalHook}
 
-MOOD:
-${mood}
+The hook is fully editable.
 
-MUSIC:
-${music}
+Create an immediate visual curiosity trigger during
+the first 1–1.2 seconds.
 
-AUDIO:
-${sound}
+Do not waste the opening on a logo.
 
-CLOSING CTA:
+========================================================
+EXACT VIDEO LENGTH
+========================================================
+
+EXACTLY 10 SECONDS.
+
+This duration is LOCKED.
+
+Never exceed 10 seconds.
+
+Never create unnecessary intro or outro padding.
+
+========================================================
+TIMELINE
+========================================================
+
+0.0–1.2 SECONDS
+SCROLL-STOP HOOK
+
+Show the most visually surprising characteristic
+of ${location} immediately.
+
+The viewer should instantly want to know:
+
+"Where is this?"
+"Is this real?"
+"What happens next?"
+
+--------------------------------------------------------
+
+1.2–3.0 SECONDS
+CURIOSITY
+
+Reveal more of the environment.
+
+Do not reveal everything immediately.
+
+Use smooth cinematic camera movement.
+
+--------------------------------------------------------
+
+3.0–6.0 SECONDS
+ESCALATION
+
+Build visual scale and emotional intensity.
+
+Reveal the unique identity of the location.
+
+--------------------------------------------------------
+
+6.0–8.5 SECONDS
+HERO REVEAL
+
+Deliver the strongest WOW visual.
+
+Make the viewer feel:
+
+"I need to see this again."
+
+--------------------------------------------------------
+
+8.5–10.0 SECONDS
+BRAND + CTA
+
+Subtly show the exact TerraLume wordmark.
+
+Then show:
+
 ${finalClosing}
 
-VIDEO LENGTH:
-EXACTLY 10 SECONDS — LOCKED.
+The final visual should naturally connect to
+the opening where physically possible.
 
-FORMAT:
-9:16 VERTICAL.
-
-==================================================
-TERRALUME BRAND IDENTITY — LOCKED
-==================================================
+========================================================
+TERRALUME BRAND LOCK
+========================================================
 
 The exact page name is:
 
 TerraLume
 
-Use the exact spelling:
+The spelling must NEVER change.
+
+Use exactly:
 
 TerraLume
+
+Do not create:
+- random logos
+- random brand names
+- alternative spellings
+- distorted lettering
+- unnecessary large branding
 
 The TerraLume wordmark must remain visually consistent
-across every generated Reel.
+between every generated video.
 
-Never:
-- change the spelling
-- change capitalization
-- invent another logo
-- create random branding
-- replace the brand name
-- redesign the wordmark
+Keep the branding elegant, premium and minimal.
 
-Do NOT show TerraLume during the first visual hook.
-
-Introduce the elegant TerraLume wordmark subtly during
-the final section of the Reel.
-
-Keep it premium, minimal and consistent.
-
-==================================================
-RETENTION ENGINE
-==================================================
-
-Design the Reel as:
-
-SCROLL STOP
-→ CURIOSITY
-→ ESCALATION
-→ WOW REVEAL
-→ EMOTIONAL PAYOFF
-→ COMMENT CTA
-→ REPLAY
-
-Every second must have a purpose.
-
-Never use boring static frames.
-
-Never waste the opening with:
-- logo animation
-- title cards
-- blank scenery
-- slow fade-in
-- generic introduction
-
-==================================================
-EXACT 10-SECOND STRUCTURE
-==================================================
-
-0.0–1.2 SEC
-SCROLL-STOP HOOK
-
-Immediately display the strongest visual characteristic
-of the location.
-
-Use this hook:
-
-${finalHook}
-
-The viewer should immediately think:
-
-"Where is this?"
-"Is this real?"
-"I need to see more."
-
---------------------------------------------------
-
-1.2–3.0 SEC
-CURIOSITY BUILD
-
-Reveal additional environmental information while
-holding back the complete visual payoff.
-
-Use smooth realistic cinematic movement.
-
---------------------------------------------------
-
-3.0–6.0 SEC
-VISUAL ESCALATION
-
-Increase visual scale and emotional intensity.
-
-Reveal the unique identity of:
-
-${location}
-
-Use the camera movement that best fits the location.
-
---------------------------------------------------
-
-6.0–8.5 SEC
-HERO REVEAL
-
-Deliver the strongest WOW moment.
-
-Show the location at its most beautiful,
-recognizable and visually impressive state.
-
---------------------------------------------------
-
-8.5–10.0 SEC
-BRAND + COMMENT + LOOP
-
-Subtly introduce:
-
-TerraLume
-
-Then display:
-
-${finalClosing}
-
-End with a natural visual connection to the opening
-so the Reel can replay smoothly.
-
-==================================================
-LOCATION AUTHENTICITY
-==================================================
-
-Study the real visual identity of:
-
-${location}
-
-Maintain:
-
-- authentic geography
-- authentic terrain
-- authentic vegetation
-- authentic architecture
-- authentic roads
-- authentic weather
-- realistic people
-- realistic vehicles
-- correct environmental scale
-- geographically believable details
-
-NEVER invent impossible landmarks,
-buildings, roads or landscapes.
-
-==================================================
+========================================================
 WILDLIFE SYSTEM
-==================================================
+========================================================
 
-${animalInstruction}
+${wildlife}
 
-Wildlife must look physically present in the scene.
-
-Never use:
-- oversized animals
-- miniature animals
-- duplicated animals
-- floating animals
-- impossible species
-- deformed anatomy
-- unnatural behaviour
-
-==================================================
-PREMIUM CINEMATIC QUALITY
-==================================================
+========================================================
+CINEMATIC QUALITY
+========================================================
 
 QUALITY TARGET:
 
 ${quality}
 
-Create an extremely detailed professional
-cinema-camera appearance.
+Create premium professional travel-film quality.
 
-Prioritize:
+Use:
 
-- photorealism
-- micro-detail
-- realistic textures
+- photorealistic textures
+- extremely detailed environments
 - realistic atmospheric depth
 - physically accurate lighting
-- natural shadows
+- realistic shadows
 - realistic reflections
 - realistic water
-- realistic foliage
-- realistic clouds
-- natural motion blur
+- realistic vegetation
+- realistic weather
+- cinematic dynamic range
+- natural film grain
 - realistic depth of field
-- controlled focus
-- professional composition
 
-The final footage must NOT look like CGI,
-game graphics or AI-generated stock footage.
+The final result must look like professional
+cinema footage rather than AI-generated content.
 
-==================================================
+========================================================
 COLOUR
-==================================================
+========================================================
 
-Use rich, vibrant, premium natural colours.
+Use exceptionally attractive natural colours.
 
-Create beautiful:
-
+Rich:
 - greens
 - blues
 - earth tones
 - sky tones
-- natural highlights
-- cinematic contrast
+- golden highlights
 
-Colours should be highly attractive but realistic.
+Maintain realistic colour relationships.
 
-Avoid:
-- neon colours
-- excessive saturation
-- artificial HDR
-- crushed blacks
-- blown highlights
+Avoid artificial neon colours.
 
-==================================================
+Avoid excessive saturation.
+
+Avoid fake HDR.
+
+========================================================
 LIGHTING
-==================================================
+========================================================
 
-Automatically select the most beautiful realistic
-natural lighting for the actual location.
+Automatically choose the most beautiful realistic
+lighting appropriate for ${location}.
 
-Possible conditions:
+Possible lighting:
 
-- sunrise
 - golden hour
-- soft daylight
+- sunrise
 - sunset
-- misty light
+- soft daylight
+- mist
 - atmospheric overcast
 
-Lighting must remain physically believable.
+All lighting must remain physically believable.
 
-==================================================
+========================================================
 CAMERA
-==================================================
+========================================================
 
-Use professional cinema-camera behaviour.
+Professional full-frame cinema camera appearance.
 
-Preferred characteristics:
+Use:
 
-- full-frame cinema appearance
-- 24fps cinematic motion
-- realistic shutter behaviour
-- natural motion blur
-- realistic depth of field
-- controlled focus pulls
-- stabilized gimbal movement
-- smooth drone movement where appropriate
-- realistic parallax
+24fps cinematic motion
+24mm establishing perspective
+35mm tracking perspective
+50mm environmental detail
 
-Never use artificial camera shake.
+Smooth stabilized movement.
 
-==================================================
+Realistic drone movement when appropriate.
+
+Natural motion blur.
+
+Controlled focus pulls.
+
+Realistic parallax.
+
+NO artificial camera shake.
+
+========================================================
 AUDIO
-==================================================
+========================================================
 
-Use music appropriate to the target country:
+TARGET AUDIENCE:
 
-${country}
+${audience.join(", ")}
 
-For music:
+MUSIC DIRECTION:
 
 ${music}
 
-Prioritize current short-form travel audio styles
-when available and appropriate.
+Select music direction that is appropriate for the
+selected international audience.
 
-Do not falsely claim that an unverified song is currently trending.
+Where current trend information is available,
+prefer relevant current short-form travel music direction.
 
-Combine music with authentic environmental sounds:
+Do not falsely identify an unverified song as trending.
 
-${sound}
+NATURAL SOUND:
 
-Possible natural sounds:
+${audio}
 
-- waves
-- waterfalls
-- rivers
-- birds
-- wind
-- rain
-- footsteps
-- wildlife
-- city ambience
-- road ambience
+Use authentic environmental audio appropriate to
+${location}.
 
-Keep the mix natural and premium.
+Examples:
 
-==================================================
-TEXT
-==================================================
+water
+wind
+birds
+wildlife
+waves
+rain
+footsteps
+forest ambience
+city ambience
+road ambience
 
-Opening:
+Keep music and environmental sound balanced.
 
-${finalHook}
+========================================================
+RETENTION ENGINE
+========================================================
 
-Closing:
+The video must follow:
 
-${finalClosing}
+HOOK
+→ CURIOSITY
+→ ESCALATION
+→ WOW
+→ EMOTION
+→ CTA
+→ REPLAY
 
-Typography must be:
+Every second must provide visual information.
 
-- premium
-- clean
-- modern
-- readable
-- consistent
+Avoid:
 
-Never create:
-- gibberish
-- distorted text
-- random letters
-- misspellings
+- boring static frames
+- generic stock footage
+- empty frames
+- unnecessary title cards
+- slow introductions
+- excessive transitions
 
-==================================================
-SOCIAL OPTIMIZATION
-==================================================
+========================================================
+SOCIAL FORMAT
+========================================================
 
 9:16 vertical.
 
-Designed specifically for:
+Optimized for:
 
 Facebook Reels
-Mobile viewers
+Mobile viewing
 High retention
-Replays
+Rewatching
 Shares
 Saves
 Comments
 Follower conversion
 
-Keep important text inside safe areas.
+Keep important text inside mobile-safe areas.
 
-==================================================
-SEAMLESS LOOP
-==================================================
+========================================================
+TEXT SYSTEM
+========================================================
 
-Where physically possible, make the final visual
-naturally echo or connect with the opening visual.
+OPENING HOOK:
 
-The replay should feel smooth rather than like
-a hard restart.
+${finalHook}
 
-==================================================
+FINAL CTA:
+
+${finalClosing}
+
+Typography:
+
+premium
+clean
+modern
+highly readable
+
+No:
+
+gibberish
+random letters
+misspellings
+distorted typography
+
+========================================================
 NEGATIVE PROMPT
-==================================================
-
-NO:
+========================================================
 
 cartoon,
 animation,
@@ -1169,60 +1300,65 @@ random text,
 gibberish,
 random watermark,
 random logo,
-fake TerraLume logo,
 incorrect TerraLume spelling,
-unnecessary presenter,
+fake TerraLume branding,
 talking host,
+unnecessary presenter,
 forced human subject.
 
-==================================================
+========================================================
 FINAL QUALITY CONTROL
-==================================================
+========================================================
 
-Before generating, verify:
+Before generating the video verify:
 
-1. EXACTLY 10 seconds.
-2. 9:16 vertical.
-3. Strong hook within first 1–1.2 seconds.
-4. Hook is not permanently locked.
-5. Closing CTA is editable.
-6. Location is geographically authentic.
-7. Every shot adds something new.
-8. Visual intensity increases.
-9. Strong hero reveal at 6–8.5 seconds.
-10. TerraLume appears only near the ending.
-11. TerraLume spelling is exact.
-12. TerraLume branding remains consistent.
+01. EXACTLY 10 seconds.
+02. 9:16 vertical.
+03. Strong visual hook within 1–1.2 seconds.
+04. Hook remains editable.
+05. Closing CTA remains editable.
+06. Actual location is geographically authentic.
+07. Audience targeting includes all four selected countries.
+08. Visual information changes continuously.
+09. Strong escalation.
+10. Strong hero reveal.
+11. TerraLume appears subtly near the ending.
+12. TerraLume spelling is exact.
 13. Wildlife is geographically appropriate.
 14. Animal anatomy is realistic.
 15. Camera movement is physically believable.
-16. Lighting is natural and cinematic.
+16. Lighting is natural.
 17. Colours are vibrant but realistic.
-18. 8K-quality visual detail is maintained.
-19. Natural environmental sound is appropriate.
-20. Music matches the target audience and mood.
+18. Premium 8K-quality detail.
+19. Natural location sound.
+20. Appropriate music direction.
 21. Text is readable.
 22. No CGI appearance.
-23. No artificial-looking objects.
-24. Closing CTA encourages interaction.
-25. Ending can naturally loop.
-26. The Reel remains visually interesting without sound.
-27. The final result feels like premium professional
-    travel cinematography.
+23. No impossible structures.
+24. CTA encourages interaction.
+25. Ending supports replay.
+26. Video remains visually interesting without audio.
+27. Overall result feels like premium professional
+    international travel cinematography.
 
-==================================================
+========================================================
 FINAL COMMAND
-==================================================
+========================================================
 
-Create the final EXACT 10-SECOND TerraLume travel Reel.
+Generate the final EXACT 10-SECOND TerraLume Reel.
 
-Make it visually extraordinary,
-geographically authentic,
-cinematic,
-photorealistic,
-high-retention,
-emotionally satisfying,
-and designed to encourage:
+Make it:
+
+ULTRA-REALISTIC
+CINEMATIC
+COLOUR-RICH
+HIGH-DETAIL
+GEOGRAPHICALLY AUTHENTIC
+HIGH-RETENTION
+MOBILE-OPTIMIZED
+EMOTIONALLY MEMORABLE
+
+The viewer should naturally want to:
 
 WATCH
 → REWATCH
@@ -1231,62 +1367,55 @@ WATCH
 → COMMENT
 → FOLLOW
 
-Do not sacrifice realism for viral effects.
+Never sacrifice realism for viral effects.
 
-Do not sacrifice geographic authenticity for spectacle.
+Never sacrifice authenticity for spectacle.
 
-Do not sacrifice cinematic quality for speed.
+Never sacrifice cinematic quality for speed.
 
-Make the viewer want to watch it again immediately.
-
-==================================================
-END OF MASTER PROMPT
-==================================================
+========================================================
+END
+========================================================
 `;
 
 
-  document.getElementById("output").value =
-    prompt.trim();
+document.getElementById("output").value =
+prompt.trim();
 
-  document.getElementById("outputCard")
-    .style.display = "block";
+document.getElementById("outputCard")
+.style.display="block";
 
-  document.getElementById("outputCard")
-    .scrollIntoView({
-      behavior:"smooth",
-      block:"nearest"
-    });
+document.getElementById("outputCard")
+.scrollIntoView({
+behavior:"smooth",
+block:"nearest"
+});
 
 }
 
 
-/* ==============================
+/* ==========================================
    COPY
-============================== */
+========================================== */
 
 function copyPrompt(){
 
-  const output =
-    document.getElementById("output");
+const text =
+document.getElementById("output").value;
 
-  navigator.clipboard
-    .writeText(output.value)
-    .then(()=>{
+navigator.clipboard.writeText(text)
+.then(()=>{
 
-      const btn =
-        document.getElementById("copyButton");
+const button =
+document.getElementById("copyBtn");
 
-      const old =
-        btn.textContent;
+button.textContent="Copied ✓";
 
-      btn.textContent =
-        "Copied ✓";
+setTimeout(()=>{
+button.textContent="Copy";
+},1500);
 
-      setTimeout(()=>{
-        btn.textContent = old;
-      },1500);
-
-    });
+});
 
 }
 
